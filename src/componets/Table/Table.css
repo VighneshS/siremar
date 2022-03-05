@@ -1,14 +1,22 @@
 table {
-    margin: 10px;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    overflow: auto; height: 100px;
 }
 
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+tbody {
+    max-height: 10%;
+    overflow-y: scroll
 }
 
 tr:nth-child(even) {

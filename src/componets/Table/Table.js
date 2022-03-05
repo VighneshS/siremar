@@ -1,11 +1,11 @@
 import React from 'react';
 import "./Table.css"
 
-export default class Table extends React.Component {
+let selectedRows = []
 
+export default class Table extends React.Component {
     constructor(props) {
         super(props);
-        this.selectedRows = []
         this.getHeader = this.getHeader.bind(this);
         this.getRowsData = this.getRowsData.bind(this);
         this.getKeys = this.getKeys.bind(this);
@@ -29,7 +29,9 @@ export default class Table extends React.Component {
             return <tr key={index}>
                 <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack} isSelectAll={false}
                                 id={row.id}/>
-                <RenderRow key={index} data={row} keys={keys}/></tr>
+                <RenderRow key={index} data={row} keys={keys}/>
+                <RenderActionButtons actions={this.props.actions} data={row}/>
+            </tr>
         })
     }
 
@@ -39,8 +41,10 @@ export default class Table extends React.Component {
                 <table>
                     <thead>
                     <tr>
-                        <td><input type={"checkbox"}/></td>
+                        <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack}
+                                        isSelectAll={false}/>
                         {this.getHeader()}
+                        <RenderActionHeader actions={this.props.actions}/>
                     </tr>
                     </thead>
                     <tbody>
@@ -52,24 +56,51 @@ export default class Table extends React.Component {
     }
 }
 
+function getRandomUniqueId() {
+    return Math.random().toString(36).substring(7);
+}
+
 const RenderRow = (props) => {
     return props.keys.map((key, index) => {
-        return <td key={props.data[key]}>{props.data[key]}</td>
+        return <td key={getRandomUniqueId()}>{props.data[key]}</td>
     })
 }
 
 function selectRow(e, id, callBack) {
     if (e.target.checked) {
-        this.selectedRows.append(id)
+        selectedRows.push(id)
     } else {
-        this.selectedRows.removeAll(id)
+        selectedRows.pop(id)
     }
-    callBack(this.selectedRows)
+    callBack(selectedRows)
+}
+
+function selectAllRow(e, callBack) {
+
+}
+
+const RenderActionHeader = (props) => {
+    if (props.actions) {
+        return <th>ACTIONS</th>;
+    }
+    return null;
+}
+
+const RenderActionButtons = (props) => {
+    if (props.actions) {
+        return props.actions.map((key, index) => {
+            return <td key={getRandomUniqueId()}>
+                <button onClick={(e) => key.callBack(e, props.data)}>{key.action}</button>
+            </td>
+        });
+    }
+    return null;
 }
 
 const RenderCheckbox = (props) => {
-    console.log(props.callBack);
-    if (props.hasCheckbox) {
+    if (props.isSelectAll) {
+        return <td><input type={"checkbox"} onClick={(e) => selectAllRow(e, props.callBack)}/></td>;
+    } else if (props.hasCheckbox) {
         return <td><input type={"checkbox"} onClick={(e) => selectRow(e, props.id, props.callBack)}/></td>;
     }
     return null;
