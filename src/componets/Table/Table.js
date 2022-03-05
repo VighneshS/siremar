@@ -27,7 +27,7 @@ export default class Table extends React.Component {
         const keys = this.getKeys();
         return items.map((row, index) => {
             return <tr key={index}>
-                <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack} isSelectAll={false}
+                <RenderCheckbox hasCheckbox={this.props.hasCheckbox} selectedUsers={this.props.selectedUsers} isSelectAll={false}
                                 id={row.id}/>
                 <RenderRow key={index} data={row} keys={keys}/>
                 <RenderActionButtons actions={this.props.actions} data={row}/>
@@ -66,13 +66,12 @@ const RenderRow = (props) => {
     })
 }
 
-function selectRow(e, id, callBack) {
+function selectRow(e, id, selectedUsers) {
     if (e.target.checked) {
-        selectedRows.push(id)
+        selectedUsers.push(id)
     } else {
-        selectedRows.pop(id)
+        selectedUsers.pop(id)
     }
-    callBack(selectedRows)
 }
 
 function selectAllRow(e, callBack) {
@@ -99,9 +98,9 @@ const RenderActionButtons = (props) => {
 
 const RenderCheckbox = (props) => {
     if (props.isSelectAll) {
-        return <td><input type={"checkbox"} onClick={(e) => selectAllRow(e, props.callBack)}/></td>;
+        return <td><input type={"checkbox"} onClick={(e) => selectAllRow(e, props.selectedUsers)}/></td>;
     } else if (props.hasCheckbox) {
-        return <td><input type={"checkbox"} onClick={(e) => selectRow(e, props.id, props.callBack)}/></td>;
+        return <td><input type={"checkbox"} onClick={(e) => selectRow(e, props.id, props.selectedUsers)}/></td>;
     }
     return null;
 }

@@ -145,7 +145,7 @@
     "email": "ilovemargarita@gmail.com",
     "proof_url": "",
     "user_role": "",
-    "is_active": false,
+    "is_active": true,
     "created_on": "2022-03-04",
     "updated_on": "2022-03-04"
   },
