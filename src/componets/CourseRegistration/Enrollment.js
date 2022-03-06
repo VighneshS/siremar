@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import styles from './flights.module.css'
 
-class BookFlights extends Component {
+import styles from './courses.module.css'
+
+class CourseRegister extends Component {
     state = {  } 
     render() { 
         return (
             <div className={styles.container}>
-                <h2>SIREMAR Flight Booking</h2>
+                <h2>SIREMAR University Course Enrollment</h2>
                 <div className={styles.col_50}>
-                    <label for="flight-name"><b>Flight Name</b></label>
+                    <label for="flight-name"><b>Campus</b></label>
                     <select>
-                        <option value="ABC Airlines">ABC Airlines</option>
-                        <option value="XYZ Airlines">XYZ Airlines</option>
+                        <option value="SW Campus">SW Campus</option>
+                        <option value="NE Campus">NE Campus</option>
                     </select>
                 </div>
                 <div className={styles.col_50}>
@@ -49,4 +50,4 @@ class BookFlights extends Component {
     }
 }
  
-export default BookFlights;
+export default CourseRegister;

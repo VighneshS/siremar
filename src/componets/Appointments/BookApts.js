@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 
-import './appointments.css'
+import styles from './appointments.module.css'
 
 class BookApts extends React.Component {
     state = {  } 
     render() { 
         return (
-            <div class="container">
+            <div className={styles.container}>
                 <h2>Book Doctor Appointment</h2>
-                <div class="col-50">
+                <div className={styles.col_50}>
                     <label><b>Clinic Name</b></label>
                     <select>
                         <option value="ABC Clinic">ABC Clinic</option>
                         <option value="XYZ Clinic">XYZ Clinic</option>
                     </select>
                 </div>
-                <div class="col-50">
+                <div className={styles.col_50}>
                     <label for="destination"><b>Destination</b></label>
                     <select>
                         <option value="Siremar Airport North">Siremar Airport North</option>
@@ -24,11 +24,11 @@ class BookApts extends React.Component {
                         <option value="Siremar Airport West">Siremar Airport West</option>
                     </select>
                 </div>
-                <div class="col-50">
+                <div className={styles.col_50}>
                     <label for="dob"><b>Date of Travel</b></label>
                     <input type="date" name="dot" />
                 </div>
-                <div class="col-25">
+                <div className={styles.col_25}>
                     <label for="dep-time"><b>Departure Time</b></label>
                     <select>
                         <option value="09:00">09:00</option>
@@ -39,10 +39,10 @@ class BookApts extends React.Component {
                         <option value="21:30">21:30</option>
                     </select>
                 </div>
-                <div class="col-50">
+                <div className={styles.col_50}>
                     <button type="submit">Submit</button>
                 </div>
-                <div class="col-50">
+                <div className={styles.col_50}>
                     <button type="button">Cancel</button>
                 </div>
             </div>

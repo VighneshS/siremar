@@ -9,6 +9,7 @@ import BookFerry from './componets/Ferry/BookFerry';
 import BookApts from './componets/Appointments/BookApts';
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserDashboard from './pages/UserDashboard';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/approve-registration" element={<ApproveRegistrations />} />
+                <Route path='/user-dashboard' element={<UserDashboard />} />
             </Routes>
         </Router>
     );
