@@ -32,6 +32,8 @@ nav .nav-links {
 nav .nav-links a {
     font-size: 18px;
     cursor: pointer;
+    color: #F0F0F1;
+    text-decoration: none;
 }
 
 
@@ -59,5 +61,7 @@ nav .nav-links a:hover:after {
 }
 
 @media screen and (max-width: 1220px) {
-    nav li {display: none;}
+    nav li {
+        display: none;
+    }
 }
