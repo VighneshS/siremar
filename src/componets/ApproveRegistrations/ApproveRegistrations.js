@@ -11,9 +11,9 @@ export default class ApproveRegistrations extends Component {
         this.state = {
             users: data,
             tableData: {
-                users: data,
+                data: data,
                 metadata: {
-
+                    styles: [{column: "Active", styleFunction: RenderBadge}]
                 }
             },
             showEditModal: false,
@@ -36,18 +36,15 @@ export default class ApproveRegistrations extends Component {
     };
 
     handleEditCallBack = (e, row) => {
-        console.log(e, row);
         this.openEditModal(row)
     }
 
     approveAndActivateUser = (e, user) => {
-        console.log(user);
         this.state.users.forEach(u => {
             if (u.id === user.id) {
                 u["Active"] = true;
             }
         });
-        console.log(this.state.users);
         this.closeEditModal();
         this.openEditModal(user);
     }
@@ -55,7 +52,7 @@ export default class ApproveRegistrations extends Component {
     render() {
         return (<div>
             <h1>Approve Registrations</h1>
-            <Table data={this.state.users} actions={this.actions}/>
+            <Table data={this.state.tableData} actions={this.actions}/>
             <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                 <h2>View User</h2>
                 <table>
@@ -102,7 +99,11 @@ export default class ApproveRegistrations extends Component {
                     </tr>
                     </tbody>
                 </table>
-                <button onClick={(e) => this.approveAndActivateUser(e, this.state.editModelData)}>Approve</button>
+                <button
+                    disabled = {this.state.editModelData["Active"]}
+                    onClick={(e) => this.approveAndActivateUser(e, this.state.editModelData)}>
+                    {!this.state.editModelData["Active"] ? "Approve" : "Approved"}
+                </button>
             </Modal>
         </div>);
     }
