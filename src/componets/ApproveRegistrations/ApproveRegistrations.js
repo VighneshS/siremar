@@ -9,7 +9,7 @@ export default class ApproveRegistrations extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: data, showEditModal: false, editModelData: {}, selectedUsers: []
+            users: data, showEditModal: false, editModelData: {}
         };
         this.actions = [{
             "action": "View", "callBack": this.handleEditCallBack
@@ -19,7 +19,6 @@ export default class ApproveRegistrations extends Component {
     }
 
     openEditModal = (user) => {
-        console.log(this.state.selectedUsers);
         this.setState({editModelData: user});
         this.setState({showEditModal: true});
     };
@@ -33,57 +32,69 @@ export default class ApproveRegistrations extends Component {
         this.openEditModal(row)
     }
 
+    approveAndActivateUser = (e, user) => {
+        console.log(user);
+        this.state.users.forEach(u => {
+            if (u.id === user.id) {
+                u["Active"] = true;
+            }
+        });
+        console.log(this.state.users);
+        this.closeEditModal();
+        this.openEditModal(user);
+    }
+
     render() {
         return (<div>
             <h1>Approve Registrations</h1>
-            <Table data={this.state.users} selectedUsers={this.state.selectedUsers}
-                   actions={this.actions}/>
+            <Table data={this.state.users} actions={this.actions}/>
             <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                 <h2>View User</h2>
                 <table>
                     <tbody>
                     <tr>
                         <td>First Name</td>
-                        <td>{this.state.editModelData.fname}</td>
+                        <td>{this.state.editModelData["First Name"]}</td>
                     </tr>
                     <tr>
                         <td>Last Name</td>
-                        <td>{this.state.editModelData.lname}</td>
+                        <td>{this.state.editModelData["Last Name"]}</td>
                     </tr>
                     <tr>
                         <td>Birth Place</td>
-                        <td>{this.state.editModelData.birth_place}</td>
+                        <td>{this.state.editModelData["Birth Place"]}</td>
                     </tr>
                     <tr>
                         <td>DOB</td>
-                        <td>{this.state.editModelData.dob}</td>
+                        <td>{this.state.editModelData["Date of Birth"]}</td>
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td>{this.state.editModelData.address}</td>
+                        <td>{this.state.editModelData["Address"]}</td>
                     </tr>
                     <tr>
                         <td>Apt. No.</td>
-                        <td>{this.state.editModelData.apt_no}</td>
+                        <td>{this.state.editModelData["Apartment Number"]}</td>
                     </tr>
                     <tr>
                         <td>Email ID</td>
-                        <td>{this.state.editModelData.email}</td>
+                        <td>{this.state.editModelData["Email"]}</td>
                     </tr>
                     <tr>
                         <td>Proof</td>
-                        <td>{this.state.editModelData.proof_url}</td>
+                        <td>{this.state.editModelData["Proof"]}</td>
                     </tr>
                     <tr>
                         <td>Role</td>
-                        <td>{this.state.editModelData.user_role}</td>
+                        <td>{this.state.editModelData["Role"]}</td>
                     </tr>
                     <tr>
                         <td>Active</td>
-                        <td><RenderBadge value={this.state.editModelData.is_active}/></td>
+                        <td><RenderBadge value={this.state.editModelData["Active"]}/></td>
                     </tr>
                     </tbody>
                 </table>
+                <button onClick={(e) => this.approveAndActivateUser(e, this.state.editModelData)}>Approve</button>
             </Modal>
         </div>);
     }

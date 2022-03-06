@@ -32,6 +32,8 @@ nav .nav-links {
 nav .nav-links a {
     font-size: 18px;
     cursor: pointer;
+    color: #F0F0F1;
+    text-decoration: none;
 }
 
 

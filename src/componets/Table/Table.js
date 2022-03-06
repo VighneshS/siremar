@@ -37,7 +37,7 @@ export default class Table extends React.Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <div >
                 <table>
                     <thead>
                     <tr>
