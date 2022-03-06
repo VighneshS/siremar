@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './NavBar.css'
 
 const NavBar = () => {
@@ -8,25 +9,45 @@ const NavBar = () => {
             <ul className={"nav-links"}>
                 <li>
                     <div className={"nav-wrapper"}>
-                        <a href={"#"}>Home</a>
+                        <Link to="/">
+                            Home
+                        </Link>
                     </div>
                 </li>
                 <li>
                     <div className={"nav-wrapper"}>
-                        <a href={"#"}>About Us</a></div>
+                        <Link to="/about">
+                            About Us
+                        </Link>
+                    </div>
                 </li>
                 <li>
                     <div className={"nav-wrapper"}>
-                        <a href={"#"}>Approve Registrations</a></div>
+                        <Link to="/approve-registration">
+                            Approve Registration
+                        </Link>
+                    </div>
                 </li>
                 <li>
-                    <div className={"nav-wrapper"}><a href={"#"}>Contact Us</a></div>
+                    <div className={"nav-wrapper"}>
+                        <Link to="/contact">
+                            Contact Us
+                        </Link>
+                    </div>
                 </li>
                 <li>
-                    <div className={"nav-wrapper"}><a href={"#"}>Login</a></div>
+                    <div className={"nav-wrapper"}>
+                        <Link to="/login">
+                            Login
+                        </Link>
+                    </div>
                 </li>
                 <li>
-                    <div className={"nav-wrapper"}><a href={"#"}>Register</a></div>
+                    <div className={"nav-wrapper"}>
+                        <Link to="/register">
+                            Register
+                        </Link>
+                    </div>
                 </li>
             </ul>
         </nav>

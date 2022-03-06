@@ -8,18 +8,18 @@ import Login from './componets/Auth/Login'
 import BookFerry from './componets/Ferry/BookFerry';
 import BookApts from './componets/Appointments/BookApts';
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 function App() {
     return (
-        <div className="App">
-            <NavBar/>
-            {/* <Register /> */}
-            {/* <Login /> */}
-            {/* <BookFerry /> */}
-            {/* <BookFlights /> */}
-            {/* < RegisterOut /> */}
-            {/* <ApproveRegistrations/>*/}
-            {/*<BookApts />*/}
-        </div>
+        <Router>
+            <NavBar />
+            <Routes>                
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/approve-registration" element={<ApproveRegistrations />} />
+            </Routes>
+        </Router>
     );
 }
 
