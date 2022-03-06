@@ -12,7 +12,7 @@ export default class Table extends React.Component {
     }
 
     getKeys = function () {
-        return Object.keys(this.props.data[0]);
+        return Object.keys(this.props.data.data[0]);
     }
 
     getHeader = function () {
@@ -23,21 +23,22 @@ export default class Table extends React.Component {
     }
 
     getRowsData = function () {
-        const items = this.props.data;
+        const items = this.props.data.data;
+        const metadata = this.props.data.metadata;
         const keys = this.getKeys();
         return items.map((row, index) => {
             return <tr key={index}>
-                <RenderCheckbox hasCheckbox={this.props.hasCheckbox} selectedUsers={this.props.selectedUsers} isSelectAll={false}
+                <RenderCheckbox hasCheckbox={this.props.hasCheckbox} selectedUsers={this.props.selectedUsers}
+                                isSelectAll={false}
                                 id={row.id}/>
-                <RenderRow key={index} data={row} keys={keys}/>
+                <RenderRow key={index} data={row} keys={keys} metadata={metadata}/>
                 <RenderActionButtons actions={this.props.actions} data={row}/>
             </tr>
         })
     }
 
     render() {
-        return (
-            <div >
+        return (<div>
                 <table>
                     <thead>
                     <tr>
@@ -51,18 +52,27 @@ export default class Table extends React.Component {
                     {this.getRowsData()}
                     </tbody>
                 </table>
-            </div>
-        );
+            </div>);
     }
 }
 
 function getRandomUniqueId() {
-    return Math.random().toString(36).substring(7);
+    return Math.random().toString(36).substring(5);
 }
 
 const RenderRow = (props) => {
+    let html;
     return props.keys.map((key, index) => {
-        return <td key={getRandomUniqueId()}>{props.data[key]}</td>
+        html = ""
+        props.metadata.styles.forEach(style => {
+            if (style.column === key) {
+                html = <td key={getRandomUniqueId()}>{style.styleFunction({value: props.data[key]})}</td>
+            }
+        })
+        if (!html) {
+            html = <td key={getRandomUniqueId()}>{props.data[key]}</td>
+        }
+        return html;
     })
 }
 
