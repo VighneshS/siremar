@@ -9,7 +9,15 @@ export default class ApproveRegistrations extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: data, showEditModal: false, editModelData: {}
+            users: data,
+            tableData: {
+                users: data,
+                metadata: {
+
+                }
+            },
+            showEditModal: false,
+            editModelData: {}
         };
         this.actions = [{
             "action": "View", "callBack": this.handleEditCallBack

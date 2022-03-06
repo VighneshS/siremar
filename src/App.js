@@ -17,7 +17,7 @@ function App() {
             {/* <BookFerry /> */}
             {/* <BookFlights /> */}
             {/* < RegisterOut /> */}
-             <ApproveRegistrations/>
+            {/* <ApproveRegistrations/>*/}
             {/*<BookApts />*/}
         </div>
     );
