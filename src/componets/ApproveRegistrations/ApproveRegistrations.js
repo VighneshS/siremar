@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import Table from "../Table/Table";
 import Modal from "../Modal/Modal";
-import data from "./table_mock.json"
-import "./ApproveRegistrations.module.css"
+import data from "../../data/users.json"
+import classes from "./ApproveRegistrations.module.css"
 
+let users = data.slice(0, 100);
 export default class ApproveRegistrations extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            users: data,
+            users: users,
             tableData: {
-                data: data,
+                data: users,
                 metadata: {
-                    styles: [{column: "Active", styleFunction: RenderBadge}]
+                    styles: [{column: "Active", styleFunction: RenderBadge}, {column: "Proof", styleFunction: RenderURL}]
                 }
             },
             showEditModal: false,
@@ -100,7 +101,7 @@ export default class ApproveRegistrations extends Component {
                     </tbody>
                 </table>
                 <button
-                    disabled = {this.state.editModelData["Active"]}
+                    disabled={this.state.editModelData["Active"]}
                     onClick={(e) => this.approveAndActivateUser(e, this.state.editModelData)}>
                     {!this.state.editModelData["Active"] ? "Approve" : "Approved"}
                 </button>
@@ -111,8 +112,16 @@ export default class ApproveRegistrations extends Component {
 
 const RenderBadge = (props: { value: * }) => {
     if (props.value) {
-        return <span className="badge green">Active</span>;
+        return <td key={getRandomUniqueId()}><span className={`${classes.badge} ${classes.green}`}>Active</span></td>;
     } else {
-        return <span className="badge red">In Active</span>;
+        return <td key={getRandomUniqueId()}><span className={`${classes.badge} ${classes.red}`}>In Active</span></td>;
     }
+}
+
+const RenderURL = (props: { value: * }) => {
+    return <td className={classes.url} key={getRandomUniqueId()}>{props.value}</td>
+}
+
+function getRandomUniqueId() {
+    return Math.random().toString(36).substring(5);
 }
