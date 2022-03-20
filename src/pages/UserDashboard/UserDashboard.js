@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import Modal from "../componets/Modal/Modal";
+import Modal from "../../componets/Modal/Modal";
 
-import BookFlights from "../componets/Flight/BookFlights";
-import BookFerry from "../componets/Ferry/BookFerry";
-import BookApts from "../componets/Appointments/BookApts";
-import RegisterOut from "../componets/Moveout/RegisterOut";
-import CourseRegister from "../componets/CourseRegistration/Enrollment";
+import BookFlights from "../../componets/Flight/BookFlights";
+import BookFerry from "../../componets/Ferry/BookFerry";
+import BookApts from "../../componets/Appointments/BookApts";
+import RegisterOut from "../../componets/Moveout/RegisterOut";
+import CourseRegister from "../../componets/CourseRegistration/Enrollment";
 
 import styles from "./userdashboard.module.css";
+import DiscountRate from "../../componets/DiscountRate/DiscountRate";
 
 class UserDashboard extends Component {
     state = {
@@ -41,8 +42,6 @@ class UserDashboard extends Component {
         this.setState({ showEditModal: false });
     };
 
-    modalWindowType = () => {};
-
     render() {
         const modalWindowType = () => {
             if (this.state.bookingType === "flight") {
@@ -53,10 +52,10 @@ class UserDashboard extends Component {
                 return <BookApts />;
             } else if (this.state.bookingType === "moveouts") {
                 return <RegisterOut />;
-            } else if (this.state.bookingType === "course"){
+            } else if (this.state.bookingType === "course") {
                 return <CourseRegister />;
             } else {
-                return ""
+                return "";
             }
         };
         return (
@@ -64,6 +63,8 @@ class UserDashboard extends Component {
                 <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                     {modalWindowType()}
                 </Modal>
+                <DiscountRate />
+                <div className={styles.col_100}></div>
                 <div className={styles.accordion_body}>
                     <div className={styles.accordion}>
                         <div className={styles.container}>
@@ -188,26 +189,34 @@ class UserDashboard extends Component {
                                 <table className={styles.roottable}>
                                     <thead>
                                         <tr>
-                                            <th>Header</th>
-                                            <th>Header</th>
-                                            <th>Header</th>
+                                            <th>Clinic Name</th>
+                                            <th>Address</th>
+                                            <th>Specialist</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>ABC Clinic</td>
+                                            <td>1025 E Mitchell Rd</td>
+                                            <td>Dentist</td>
+                                            <td>03-24-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>ABC Clinic</td>
+                                            <td>1025 E Mitchell Rd</td>
+                                            <td>Dentist</td>
+                                            <td>03-24-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>ABC Clinic</td>
+                                            <td>1025 E Mitchell Rd</td>
+                                            <td>Dentist</td>
+                                            <td>03-24-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -238,26 +247,30 @@ class UserDashboard extends Component {
                                 <table className={styles.roottable}>
                                     <thead>
                                         <tr>
-                                            <th>Header</th>
-                                            <th>Header</th>
-                                            <th>Header</th>
+                                            <th>Requested Date</th>
+                                            <th>Moveout Date</th>
+                                            <th>Reason</th>
+                                            <th>Approval Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>03-14-2022</td>
+                                            <td>03-22-2022</td>
+                                            <td>Loren Ipsum</td>
+                                            <td>PENDING</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                        <td>03-14-2022</td>
+                                            <td>03-22-2022</td>
+                                            <td>Loren Ipsum</td>
+                                            <td>PENDING</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                        <td>03-14-2022</td>
+                                            <td>03-22-2022</td>
+                                            <td>Loren Ipsum</td>
+                                            <td>PENDING</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -265,7 +278,7 @@ class UserDashboard extends Component {
                         </div>
                         <hr />
                         <div className={styles.container}>
-                        <div className={`${styles.col_50} ${styles.title}`}>
+                            <div className={`${styles.col_50} ${styles.title}`}>
                                 Course Enrollment
                             </div>
                             <div className={[styles.col_25]}>
@@ -288,26 +301,26 @@ class UserDashboard extends Component {
                                 <table className={styles.roottable}>
                                     <thead>
                                         <tr>
-                                            <th>Header</th>
-                                            <th>Header</th>
-                                            <th>Header</th>
+                                            <th>Campus</th>
+                                            <th>Course Name</th>
+                                            <th>Section</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>SW Campus</td>
+                                            <td>CSE 6324</td>
+                                            <td>#2</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>SW Campus</td>
+                                            <td>CSE 6324</td>
+                                            <td>#2</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>SW Campus</td>
+                                            <td>CSE 6324</td>
+                                            <td>#2</td>
                                         </tr>
                                     </tbody>
                                 </table>

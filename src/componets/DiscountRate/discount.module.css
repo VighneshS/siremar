@@ -1,0 +1,59 @@
+.container {
+    padding: 16px;
+    width: 75%;
+    margin: auto;
+}
+
+.col_25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    padding: 6px;
+}
+
+.col_50 {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 6px;
+}
+
+.col_75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+    padding: 6px;
+}
+
+.col_100 {
+    float: left;
+    width: 100%;
+    margin-top: 6px;
+    padding: 6px;
+}
+
+.discount_text {
+    text-align: center;
+    border-width: 2px;
+    border-style: dotted;
+    height: 100px;
+    line-height: 80px;
+    margin-top: 50px;
+}
+
+.discount_text p {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.discount_text a {
+    border-width: 0.5px;
+    border-style:solid;
+    border-radius: 20px;
+    border-color: greenyellow;
+    margin-left: 5px;
+    padding: 3px;
+    background-color: greenyellow;
+    cursor: pointer;
+}

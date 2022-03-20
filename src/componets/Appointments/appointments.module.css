@@ -31,7 +31,7 @@ button:hover {
 
 .container {
   padding: 16px;
-  width: 50%;
+  width: 75%;
   margin: auto;
 }
 
@@ -61,4 +61,30 @@ button:hover {
   width: 100%;
   margin-top: 6px;
   padding: 6px;
+}
+
+.totals {
+  margin: 0;
+  /* position: absolute; */
+  top: 50%;
+}
+
+.totals_item {
+    float: right;
+    clear: both;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.totals_item label {
+    float: left;
+    clear: both;
+    width: 60%;
+    text-align: right;
+}
+
+.totals_value {
+    float: right;
+    width: 40%;
+    text-align: right;
 }
