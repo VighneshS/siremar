@@ -1,7 +1,5 @@
 import React from 'react';
-import "./Table.css"
-
-let selectedRows = []
+import "./Table.module.css"
 
 export default class Table extends React.Component {
     constructor(props) {
