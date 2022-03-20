@@ -1,23 +1,40 @@
 import React, { Component } from 'react';
-import "./auth.css"
+
+import { Link } from "react-router-dom";
+
+import styles from "./auth.module.css"
 
 class Login extends Component {
     state = {  } 
+
+    handleLogin = () => {
+
+    }
+
     render() { 
         return (
-            <div class="container">
+            <div className={styles.container}>
                 <label for="uname"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="uname" required />
 
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required />
-                    
-                <button type="submit">Login</button>
+                
+                <div className={styles.col_100}>
+                    <input type="checkbox" checked="checked" name="remember" /> Remember me
+                </div>
+                <div className={styles.col_50}>
+                    <Link to="/user-dashboard">
+                        <button className={styles.bttn} type="submit" >Login</button>
+                    </Link>    
+                </div>
+                <div className={styles.col_50}>
+                        <button className={styles.bttn}>Cancel</button>
+                </div>
+
                 <label>
-                <input type="checkbox" checked="checked" name="remember" /> Remember me
                 </label>
-                <button type="button" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+                <span className={styles.psw}>Forgot <a href="#">password?</a></span>
             </div>
         );
     }

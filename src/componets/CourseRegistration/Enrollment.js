@@ -1,45 +1,48 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import CouponBox from "../CouponBox/CouponBox";
 
-import styles from "./appointments.module.css";
+import styles from './courses.module.css'
 
-class BookApts extends React.Component {
-    state = {};
+class CourseRegister extends Component {
+    state = { 
+        course: ""
+     } 
+    handleSelected_course = (e) => {
+        this.setState({
+            course: e.target.value
+        })
+    }
     render() {
         return (
             <div className={styles.container}>
-                <h2>Book Doctor Appointment</h2>
+                <h2>SIREMAR University Course Enrollment</h2>
                 <div className={styles.col_75}>
                     <div className={styles.col_50}>
-                        <label>
-                            <b>Clinic Name</b>
-                        </label>
+                        <label for="flight-name"><b>Campus</b></label>
                         <select>
-                            <option value="ABC Clinic">ABC Clinic</option>
-                            <option value="XYZ Clinic">XYZ Clinic</option>
+                            <option value="SW Campus">SW Campus</option>
+                            <option value="NE Campus">NE Campus</option>
                         </select>
                     </div>
                     <div className={styles.col_50}>
-                        <label for="destination">
-                            <b>Specialization</b>
-                        </label>
-                        <select>
-                            <option value="Dentist">Dentist</option>
-                            <option value="Ortho">Ortho</option>
-                            <option value="Urologist">Urologist</option>
-                            <option value="General Doctor">General Doctor</option>
+                        <label for="destination"><b>Courses</b></label>
+                        <select onChange={this.handleSelected_course}>
+                            <option value="CSE 5301">CSE 5301</option>
+                            <option value="CSE 5311">CSE 5311</option>
+                            <option value="CSE 6324">CSE 6324</option>
+                            <option value="CSE 5303">CSE 5303</option>
                         </select>
-                    </div>
-                    <div className={styles.col_50}>
-                        <label for="dob">
-                            <b>Date</b>
-                        </label>
-                        <input type="date" name="dot" />
                     </div>
                     <div className={styles.col_25}>
-                        <label for="dep-time">
-                            <b>Time</b>
-                        </label>
+                        <label for="dep-time"><b>Section</b></label>
+                        <select>
+                            <option value="#1">#1</option>
+                            <option value="#2">#2</option>
+                            <option value="#3">#3</option>
+                        </select>
+                    </div>
+                    {/* <div className={styles.col_25}>
+                        <label for="dep-time"><b>Departure Time</b></label>
                         <select>
                             <option value="09:00">09:00</option>
                             <option value="11:00">11:00</option>
@@ -48,7 +51,7 @@ class BookApts extends React.Component {
                             <option value="20:00">20:00</option>
                             <option value="21:30">21:30</option>
                         </select>
-                    </div>
+                    </div> */}
                     <div className={styles.col_100}>
                         <CouponBox />
                     </div> 
@@ -82,14 +85,11 @@ class BookApts extends React.Component {
                     </div>
                     <div className={styles.col_50}>
                         <button type="submit">Checkout</button>
-                    </div>
-                    {/* <div className={styles.col_50}>
-                        <button type="button">Cancel</button>
-                    </div> */}
+                    </div>                    
                 </div>
             </div>
         );
     }
 }
-
-export default BookApts;
+ 
+export default CourseRegister;

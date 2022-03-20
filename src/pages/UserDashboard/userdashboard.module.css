@@ -1,0 +1,135 @@
+.col_5 {
+float: left;
+width: 5%;
+margin-top: 6px;
+padding: 6px;
+}
+
+.col_25 {
+float: left;
+width: 25%;
+margin-top: 6px;
+padding: 6px;
+}
+
+.col_50 {
+float: left;
+width: 50%;
+margin-top: 6px;
+padding: 6px;
+}
+
+.col_75 {
+float: left;
+width: 75%;
+margin-top: 6px;
+padding: 6px;
+}
+
+.col_100 {
+float: left;
+width: 100%;
+margin-top: 6px;
+padding: 6px;
+}
+
+.container {
+width: 100%;
+padding: 18px;
+}
+
+.container button {
+    background-color: red;
+}
+
+.accordion {
+width: 90%;
+margin: 90px auto;
+color: black;
+background-color: white;
+padding: 45px 45px;
+}
+
+/* .container {
+    position: relative;
+margin: 10px 10px;
+} */
+
+.label {
+position: relative;
+padding: 10px 0;
+font-size: 30px;
+color: black;
+cursor: pointer;
+}
+
+.title {
+    padding: 10px 0;
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+    text-align: left;
+}
+
+.expandbttn {
+    position: relative;
+    left: 20%;
+}
+
+/* .label::before {
+content: "+";
+color: black;
+position: absolute;
+top: 50%;
+right: -5px;
+font-size: 30px;
+transform: translateY(-50%);
+} */
+
+.content {
+position: relative;
+background: white;
+height: 0;
+font-size: 20px;
+text-align: justify;
+width: 780px;
+overflow: hidden;
+transition: 0.5s;
+}
+
+.accordion hr {
+width: 100;
+margin-left: 0;
+border: 1px solid grey;
+}
+
+.expand {
+    /* position: relative; */
+    background: white;
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+/* Changes from plus sign to negative sign once active */
+
+/* .container.active .label::before {
+    content: '-';
+    font-size: 30px;
+} */
+
+
+.roottable {
+    width: 100%;
+    margin: 0px;
+    border-width: 2px;
+    border-style: solid;
+    background-color: aquamarine;
+    border-collapse: collapse;
+}
+
+.roottable th {
+    background-color: chartreuse;
+    text-align: center;
+}
