@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Table from "../Table/Table";
 import Modal from "../Modal/Modal";
 import data from "./table_mock.json"
-import "./ApproveRegistrations.css"
+import "./ApproveRegistrations.module.css"
 
 export default class ApproveRegistrations extends Component {
 
