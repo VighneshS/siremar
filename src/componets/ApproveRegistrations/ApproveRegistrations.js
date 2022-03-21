@@ -3,6 +3,7 @@ import Table from "../Table/Table";
 import Modal from "../Modal/Modal";
 import data from "../../data/users.json"
 import classes from "./ApproveRegistrations.module.css"
+import utils from "../utils/Utilities";
 
 let users = data.slice(0, 100);
 export default class ApproveRegistrations extends Component {
@@ -14,7 +15,10 @@ export default class ApproveRegistrations extends Component {
             tableData: {
                 data: users,
                 metadata: {
-                    styles: [{column: "Active", styleFunction: RenderBadge}, {column: "Proof", styleFunction: RenderURL}]
+                    styles: [{column: "Active", styleFunction: RenderBadge}, {
+                        column: "Proof",
+                        styleFunction: RenderURL
+                    }]
                 }
             },
             showEditModal: false,
@@ -112,16 +116,14 @@ export default class ApproveRegistrations extends Component {
 
 const RenderBadge = (props: { value: * }) => {
     if (props.value) {
-        return <td key={getRandomUniqueId()}><span className={`${classes.badge} ${classes.green}`}>Active</span></td>;
+        return <td key={utils.getRandomUniqueId()}><span className={`${classes.badge} ${classes.green}`}>Active</span>
+        </td>;
     } else {
-        return <td key={getRandomUniqueId()}><span className={`${classes.badge} ${classes.red}`}>In Active</span></td>;
+        return <td key={utils.getRandomUniqueId()}><span className={`${classes.badge} ${classes.red}`}>In Active</span>
+        </td>;
     }
 }
 
 const RenderURL = (props: { value: * }) => {
-    return <td className={classes.url} key={getRandomUniqueId()}>{props.value}</td>
-}
-
-function getRandomUniqueId() {
-    return Math.random().toString(36).substring(5);
+    return <td className={classes.url} key={utils.getRandomUniqueId()}>{props.value}</td>
 }
