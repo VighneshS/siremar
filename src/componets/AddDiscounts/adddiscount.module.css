@@ -1,0 +1,64 @@
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password], input[type=date], input[type=number], input[type=file], select {
+  width: 100%;
+  padding: 5px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 40px;
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.container button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 16px;
+  width: 60%;
+  margin: auto;
+}
+
+.col_25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+  padding: 6px;
+}
+
+.col_50 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 6px;
+}
+
+.col_75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+  padding: 6px;
+}
+
+.col_100 {
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px;
+}

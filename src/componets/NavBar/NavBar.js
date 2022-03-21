@@ -37,7 +37,7 @@ const NavBar = () => {
                 </li>
                 <li>
                     <div className={"nav-wrapper"}>
-                        <Link to="/login">
+                        <Link to="/user/login">
                             Login
                         </Link>
                     </div>

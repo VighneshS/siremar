@@ -15,42 +15,32 @@ class UserProfile extends Component {
                     <div className={styles.profile__form}>
                         <table id={styles.profile}>
                             <tr>
-                                <th>Username</th>
-                                <th>UTA ID</th>
-                                <th>Role</th>
+                                <th>User ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                             </tr>
                             <tr>
-                                <td>xx.xx@mavs.uta.edu</td>
-                                <td>1001704417</td>
-                                <td>The Role goes here</td>
+                                <td>1001842007</td>
+                                <td>Abishek</td>
+                                <td>PS</td>
                             </tr>
                             <tr>
-                                <th>Birthdate</th>
-                                <th>Email</th>
+                                <th>Birth Place</th>
+                                <th>Birthday</th>
                                 <th>Gender</th>
                             </tr>
                             <tr>
+                                <td>SIREMAR</td>
                                 <td>01/01/1994</td>
-                                <td>xx.xx@mavs.uta.edu</td>
-                                <td>Female</td>
+                                <td>Male</td>
                             </tr>
                             <tr>
                                 <th colspan="3">Address (Street View, Apartment No)</th>
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    513 Summit Avenue Apt ### Meadow Run Arlington TX 76013
+                                    513 Summit Avenue Apt ### Meadow Run
                                 </td>
-                            </tr>
-                            <tr>
-                                <th>City</th>
-                                <th>Zipcode</th>
-                                <th>Country</th>
-                            </tr>
-                            <tr>
-                                <td>Arlington</td>
-                                <td>76013</td>
-                                <td>United States</td>
                             </tr>
                         </table>
                     </div>

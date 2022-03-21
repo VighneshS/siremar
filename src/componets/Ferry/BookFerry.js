@@ -18,9 +18,20 @@ class BookFerry extends React.Component {
                             <option value="XYZ Ferry">XYZ Ferry</option>
                         </select>
                     </div>
-                    <div className={styles.col_50}>
+                    <div className={styles.col_25}>
                         <label for="bplace">
-                            <b>Destination</b>
+                            <b>From</b>
+                        </label>
+                        <select>
+                            <option value="Siremar Dock A">Siremar Dock A</option>
+                            <option value="Siremar Dock B">Siremar Dock B</option>
+                            <option value="Siremar Dock C">Siremar Dock C</option>
+                            <option value="Siremar Dock D">Siremar Dock D</option>
+                        </select>
+                    </div>
+                    <div className={styles.col_25}>
+                        <label for="bplace">
+                            <b>To</b>
                         </label>
                         <select>
                             <option value="Siremar Dock A">Siremar Dock A</option>
