@@ -79,7 +79,7 @@ class NavBar extends Component {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><Link to="/about">About</Link>
                     </li>
-                    <li className={`${classes.item} ${classes.hasSubmenu}`} ref={function (el) {
+                    {/* <li className={`${classes.item} ${classes.hasSubmenu}`} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
                         <a tabIndex="0">Sample</a>
@@ -88,7 +88,7 @@ class NavBar extends Component {
                             <li className={classes.subItem}><a href="#">Submenu 2</a></li>
                             <li className={classes.subItem}><a href="#">Submenu 3</a></li>
                         </ul>
-                    </li>
+                    </li> */}
                     <li className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Blog</a></li>
@@ -101,14 +101,38 @@ class NavBar extends Component {
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
                         <a tabIndex="0">Login</a>
                         <ul className={classes.submenu}>
-                            <li className={classes.subItem}><a href="#">Resident</a></li>
-                            <li className={classes.subItem}><a href="#">Inspector</a></li>
-                            <li className={classes.subItem}><a href="#">Admin</a></li>
+                            <li className={classes.subItem}>
+                                <Link to="/user/login">
+                                    Resident
+                                </Link>
+                            </li>
+                            <li className={classes.subItem}>
+                                <Link to="/inspector/login">
+                                    Inspector
+                                </Link>
+                            </li>
+                            <li className={classes.subItem}>
+                                <Link to="/admin/login">
+                                    Admin
+                                </Link>
+                            </li>
                         </ul>
                     </li>
-                    <li className={`${classes.item} ${classes.button} ${classes.secondary}`} ref={function (el) {
+                    <li className={`${classes.item} ${classes.button} ${classes.hasSubmenu}`} ref={function (el) {
                         self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Sign Up</a>
+                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a>Sign Up</a>
+                    <ul className={classes.submenu}>
+                            <li className={classes.subItem}>
+                                <Link to="/user/register">
+                                    Resident
+                                </Link>
+                            </li>
+                            <li className={classes.subItem}>
+                                <Link to="/inspector/register">
+                                    Inspector
+                                </Link>
+                            </li>
+                        </ul>
                     </li>
                     <li className={classes.toggle} onClick={this.toggleMenu} ref={function (el) {
                         self.toggle = el;
