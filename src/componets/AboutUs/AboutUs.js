@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import classes from "./AboutUs.module.css"
 
 
-export default class AdminDashboard extends Component {
+export default class AboutUs extends Component {
     constructor(props) {
         super(props);
     }

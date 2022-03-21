@@ -4,11 +4,30 @@ import styles from "./auth.module.css"
 
 
 class Register extends Component {
-    state = {  } 
+    constructor(props) {
+        super();
+        this.state = {
+            path: window.location.pathname,
+        };
+    }
+
     render() { 
+        const loginType = () => {
+            if (this.state.path.includes("user")) {
+                return (
+                    <h1>Resident Registration</h1>
+                );
+            } else {
+                return (
+                    <h1>inspector Registration</h1>
+                );
+            }
+        }
         return (
             <div className={styles.container}>
-
+                <div className={styles.col_100}>
+                    {loginType()}
+                </div>
                 <div className={styles.col_100}>
                     <label for="emailid"><b>Email ID</b></label>
                     <input type="text" placeholder="" name="emailid" required />
