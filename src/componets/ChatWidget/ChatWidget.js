@@ -55,6 +55,7 @@ class ChatWidget extends Component {
                 <h2>Chat with Inspector</h2>
                 <div className={classes.chatBorder}>
                     <div className={classes.chatLog} ref={function (el) {
+                        console.log("Here");
                         self.chatLog = el
                     }}>
                         {this.state.messages}

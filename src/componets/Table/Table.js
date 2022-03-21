@@ -1,5 +1,6 @@
 import React from 'react';
-import classes from "./Table.module.css"
+import utils from '../utils/Utilities'
+import classes from './Table.module.css'
 
 export default class Table extends React.Component {
     constructor(props) {
@@ -37,25 +38,21 @@ export default class Table extends React.Component {
 
     render() {
         return (<div>
-                <table>
-                    <thead>
-                    <tr>
-                        <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack}
-                                        isSelectAll={false}/>
-                        {this.getHeader()}
-                        <RenderActionHeader actions={this.props.actions}/>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.getRowsData()}
-                    </tbody>
-                </table>
-            </div>);
+            <table>
+                <thead>
+                <tr>
+                    <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack}
+                                    isSelectAll={false}/>
+                    {this.getHeader()}
+                    <RenderActionHeader actions={this.props.actions}/>
+                </tr>
+                </thead>
+                <tbody>
+                {this.getRowsData()}
+                </tbody>
+            </table>
+        </div>);
     }
-}
-
-function getRandomUniqueId() {
-    return Math.random().toString(36).substring(5);
 }
 
 const RenderRow = (props) => {
@@ -68,7 +65,7 @@ const RenderRow = (props) => {
             }
         })
         if (!html) {
-            html = <td key={getRandomUniqueId()}>{props.data[key]}</td>
+            html = <td key={utils.getRandomUniqueId()}>{props.data[key]}</td>
         }
         return html;
     })
@@ -96,7 +93,7 @@ const RenderActionHeader = (props) => {
 const RenderActionButtons = (props) => {
     if (props.actions) {
         return props.actions.map((key, index) => {
-            return <td key={getRandomUniqueId()}>
+            return <td key={utils.getRandomUniqueId()}>
                 <button onClick={(e) => key.callBack(e, props.data)}>{key.action}</button>
             </td>
         });
