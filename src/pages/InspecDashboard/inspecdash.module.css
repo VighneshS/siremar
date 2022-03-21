@@ -38,10 +38,6 @@
     padding: 18px;
 }
 
-.container button {
-    background-color: red;
-}
-
 .accordion {
     width: 90%;
     margin: 90px auto;
@@ -49,11 +45,6 @@
     background-color: white;
     padding: 45px 45px;
 }
-
-/* .container {
-    position: relative;
-margin: 10px 10px;
-} */
 
 .label {
     position: relative;
@@ -76,14 +67,14 @@ margin: 10px 10px;
 }
 
 /* .label::before {
-content: "+";
-color: black;
-position: absolute;
-top: 50%;
-right: -5px;
-font-size: 30px;
-transform: translateY(-50%);
-} */
+    content: "+";
+    color: black;
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    font-size: 30px;
+    transform: translateY(-50%);
+    } */
 
 .content {
     position: relative;
@@ -106,7 +97,7 @@ transform: translateY(-50%);
 .expand {
     /* position: relative; */
     background: white;
-    height: 200px;
+    height: auto;
     width: 100%;
     overflow: hidden;
     transition: 0.5s;
@@ -115,9 +106,9 @@ transform: translateY(-50%);
 /* Changes from plus sign to negative sign once active */
 
 /* .container.active .label::before {
-    content: '-';
-    font-size: 30px;
-} */
+        content: '-';
+        font-size: 30px;
+    } */
 
 .roottable {
     width: 100%;

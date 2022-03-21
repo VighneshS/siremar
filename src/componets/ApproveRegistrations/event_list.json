@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "type": "Event",
+        "name": "Guns N Roses Concert",
+        "Address": "1142 E Mitchell Ave",
+        "date": "03-12-2022",
+        "time": "13:00",
+        "dicount": "25%",
+        "isConfirmed": "CONFIRMED"
+    },
+    {
+        "id": 2,
+        "type": "Event",
+        "name": "The Weekend Concert",
+        "Address": "1142 E Mitchell Ave",
+        "date": "03-12-2022",
+        "time": "13:00",
+        "dicount": "25%",
+        "isConfirmed": "CONFIRMED"
+    },
+    {
+        "id": 3,
+        "type": "Retail",
+        "name": "ABC Grocery Shop",
+        "Address": "5353 W Mitchell Cir",
+        "date": "03-12-2022",
+        "time": "13:00",
+        "dicount": "25%",
+        "isConfirmed": "CONFIRMED"
+    }
+]

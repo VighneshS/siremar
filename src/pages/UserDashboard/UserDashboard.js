@@ -9,6 +9,7 @@ import CourseRegister from "../../componets/CourseRegistration/Enrollment";
 
 import styles from "./userdashboard.module.css";
 import DiscountRate from "../../componets/DiscountRate/DiscountRate";
+import BookEvents from "../../componets/Events/BookEvents";
 
 class UserDashboard extends Component {
     state = {
@@ -54,6 +55,8 @@ class UserDashboard extends Component {
                 return <RegisterOut />;
             } else if (this.state.bookingType === "course") {
                 return <CourseRegister />;
+            } else if (this.state.bookingType === "events") {
+                return <BookEvents />;
             } else {
                 return "";
             }
@@ -91,26 +94,34 @@ class UserDashboard extends Component {
                                 <table className={styles.roottable}>
                                     <thead>
                                         <tr>
-                                            <th>Header</th>
-                                            <th>Header</th>
-                                            <th>Header</th>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Ferry Name</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>Siremar Airport North</td>
+                                            <td>Siremar Airport South</td>
+                                            <td>ABC Airlines</td>
+                                            <td>03-14-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>Siremar Airport North</td>
+                                            <td>Siremar Airport South</td>
+                                            <td>ABC Airlines</td>
+                                            <td>03-14-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>Siremar Airport North</td>
+                                            <td>Siremar Airport South</td>
+                                            <td>ABC Airlines</td>
+                                            <td>03-14-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -139,26 +150,34 @@ class UserDashboard extends Component {
                                 <table className={styles.roottable}>
                                     <thead>
                                         <tr>
-                                            <th>Header</th>
-                                            <th>Header</th>
-                                            <th>Header</th>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Ferry Name</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>Siremar Dock A</td>
+                                            <td>Siremar Dock B</td>
+                                            <td>ABC Ferry</td>
+                                            <td>03-14-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>Siremar Dock A</td>
+                                            <td>Siremar Dock B</td>
+                                            <td>ABC Ferry</td>
+                                            <td>03-14-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                         <tr>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
-                                            <td>Cell</td>
+                                            <td>Siremar Dock A</td>
+                                            <td>Siremar Dock B</td>
+                                            <td>ABC Ferry</td>
+                                            <td>03-14-2022</td>
+                                            <td>13:00</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -261,13 +280,13 @@ class UserDashboard extends Component {
                                             <td>PENDING</td>
                                         </tr>
                                         <tr>
-                                        <td>03-14-2022</td>
+                                            <td>03-14-2022</td>
                                             <td>03-22-2022</td>
                                             <td>Loren Ipsum</td>
                                             <td>PENDING</td>
                                         </tr>
                                         <tr>
-                                        <td>03-14-2022</td>
+                                            <td>03-14-2022</td>
                                             <td>03-22-2022</td>
                                             <td>Loren Ipsum</td>
                                             <td>PENDING</td>
@@ -327,6 +346,108 @@ class UserDashboard extends Component {
                             </div>
                         </div>
                         <hr />
+                        <div className={styles.container}>
+                            <div className={`${styles.col_50} ${styles.title}`}>Events</div>
+                            {/* <div className={[styles.col_25]}>
+                                <button onClick={this.openEditModal.bind(this, "events")}>
+                                    Book Events
+                                </button>
+                            </div> */}
+                            <div className={`${styles.col_5} ${styles.expandbttn}`}>
+                                <button id="sixth" onClick={this.handleaccordion}>
+                                    {this.state.active ? "-" : "+"}
+                                </button>
+                            </div>
+                            <div
+                                className={`${
+                                    this.state.active === "sixth"
+                                        ? `${styles.expand}`
+                                        : `${styles.content}`
+                                }`}
+                            >
+                                <table className={styles.roottable}>
+                                    <thead>
+                                        <tr>
+                                            <th>Event Name</th>
+                                            <th>Venue</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>The Weekend Concert</td>
+                                            <td>1142 E Mitchell Ave</td>
+                                            <td>03-12-2022</td>
+                                            <td>13:00</td>
+                                            <td>
+                                                <center>
+                                                    <button>Booked</button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>AC DC Concert</td>
+                                            <td>2452 W Mitchell Ave</td>
+                                            <td>03-11-2022</td>
+                                            <td>22:00</td>
+                                            <td>
+                                                <center>
+                                                    <button>Book</button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className={styles.container}>
+                            <div className={`${styles.col_50} ${styles.title}`}>
+                                SIREMAR Businesses
+                            </div>
+                            {/* <div className={[styles.col_25]}>
+                                <button onClick={this.openEditModal.bind(this, "course")}>
+                                    Enroll
+                                </button>
+                            </div> */}
+                            <div className={`${styles.col_5} ${styles.expandbttn}`}>
+                                <button id="seventh" onClick={this.handleaccordion}>
+                                    {this.state.active ? "-" : "+"}
+                                </button>
+                            </div>
+                            <div
+                                className={`${
+                                    this.state.active === "seventh"
+                                        ? `${styles.expand}`
+                                        : `${styles.content}`
+                                }`}
+                            >
+                                <table className={styles.roottable}>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Walmart</td>
+                                            <td>1324 New York Ave</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Walmart</td>
+                                            <td>1324 New York Ave</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Walmart</td>
+                                            <td>1324 New York Ave</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

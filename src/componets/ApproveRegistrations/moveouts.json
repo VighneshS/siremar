@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "First Name": "Vighnesh",
+        "Last Name": "Sivaraman",
+        "Birth Place": "Inside Margarita",
+        "Date of Birth": "2000-01-01",
+        "Address": "417 Summit Ave",
+        "Apartment Number": "160",
+        "Requested Date": "03-03-2022",
+        "Move out Date": "22-04-2022",
+        "Reason": "Loren Ipsum",
+        "Proof": "",
+        "Role": "Resident",
+        "Active": true
+    }
+]
