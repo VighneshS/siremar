@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Table.module.css"
+import classes from "./Table.module.css"
 
 export default class Table extends React.Component {
     constructor(props) {
@@ -64,7 +64,7 @@ const RenderRow = (props) => {
         html = ""
         props.metadata.styles.forEach(style => {
             if (style.column === key) {
-                html = <td key={getRandomUniqueId()}>{style.styleFunction({value: props.data[key]})}</td>
+                html = style.styleFunction({value: props.data[key]})
             }
         })
         if (!html) {
