@@ -1,0 +1,29 @@
+.fab {
+    margin: 0;
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed;
+}
+
+.chatBtn {
+    color: white;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 30px;
+    line-height: 30px;
+    display: inline-block;
+    position: relative;
+    border-radius: 20px;
+    background: #4CAF50;
+    box-shadow: 0 2px 2px #888888;
+    transition: color 0.3s, background-image 0.5s, ease-in-out;
+}
+
+.chat-btn:hover {
+    background-image: linear-gradient(#b1ccda 49%, #96b4c5 51%);
+    color: white;
+}
