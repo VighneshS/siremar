@@ -21,7 +21,7 @@ function App() {
             <NavBar/>
             <Chat/>
             <Routes>
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/user/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/approve-registration" element={<ApproveRegistrations/>}/>
                 <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
