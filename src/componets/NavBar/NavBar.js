@@ -74,11 +74,11 @@ class NavBar extends Component {
                     <li className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem} onClick={this.toggleItem}
-                        onKeyPress={this.toggleItem}><Link to="/about">Home</Link></li>
-                    <li className={classes.item} ref={function (el) {
+                        onKeyPress={this.toggleItem}><Link to="/">Home</Link></li>
+                    {/* <li className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><Link to="/about">About</Link>
-                    </li>
+                    </li> */}
                     {/* <li className={`${classes.item} ${classes.hasSubmenu}`} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
@@ -92,10 +92,10 @@ class NavBar extends Component {
                     <li className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Blog</a></li>
-                    <li className={classes.item} ref={function (el) {
+                    {/* <li className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Contact</a>
-                    </li>
+                    </li> */}
                     <li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>

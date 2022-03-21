@@ -43,26 +43,6 @@ class Login extends Component {
             }
         };
 
-        const RegisterRouting = () => {
-            if (this.state.path.includes("user")) {
-                return (
-                    <Link to="/user/register">
-                            Create a Resident Account
-                    </Link>
-                );
-            } else if (this.state.path.includes("admin")) {
-                return (
-                    ""
-                );
-            } else {
-                return (
-                    <Link to="/inspector/register">
-                        Create an Inspector Account
-                    </Link>
-                );
-            }
-        };
-
         const loginType = () => {
             if (this.state.path.includes("user")) {
                 return (
@@ -102,10 +82,10 @@ class Login extends Component {
                     <button className={styles.bttn}>Cancel</button>
                 </div>
 
-                <label></label>
-                <span className={styles.psw}>
+                {/* <label></label> */}
+                {/* <span className={styles.psw}>
                     {RegisterRouting()}
-                </span>
+                </span> */}
             </div>
         );
     }
