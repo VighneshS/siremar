@@ -5,11 +5,11 @@ import data from "../../data/users.json"
 import classes from "./ApproveRegistrations.module.css"
 import utils from "../utils/Utilities";
 
-let users = data.slice(0, 100);
 export default class ApproveRegistrations extends Component {
-
+    
     constructor(props) {
         super(props);
+        let users = props.data.slice(0, 10);
         this.state = {
             users: users,
             tableData: {
@@ -56,7 +56,7 @@ export default class ApproveRegistrations extends Component {
 
     render() {
         return (<div>
-            <h1>Approve Registrations</h1>
+            {/* <h1>Approve Registrations</h1> */}
             <Table data={this.state.tableData} actions={this.actions}/>
             <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                 <h2>View User</h2>

@@ -21,13 +21,13 @@ const NavBar = () => {
                         </Link>
                     </div>
                 </li>
-                <li>
+                {/* <li>
                     <div className={"nav-wrapper"}>
                         <Link to="/approve-registration">
                             Approve Registration
                         </Link>
                     </div>
-                </li>
+                </li> */}
                 <li>
                     <div className={"nav-wrapper"}>
                         <Link to="/contact">

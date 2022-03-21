@@ -1,12 +1,10 @@
 import './App.css';
-import RegisterOut from './componets/Moveout/RegisterOut';
+
 import NavBar from "./componets/NavBar/NavBar";
 import Chat from "./componets/Chat/Chat";
 import ApproveRegistrations from "./componets/ApproveRegistrations/ApproveRegistrations";
 import Register from './componets/Auth/Register';
 import Login from './componets/Auth/Login'
-import BookFerry from './componets/Ferry/BookFerry';
-import BookApts from './componets/Appointments/BookApts';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
 import UserProfile from './pages/UserProfile/UserProfile';
 import InspecDashboard from './pages/InspecDashboard/InspecDashboard';
@@ -22,12 +20,14 @@ function App() {
             <Chat/>
             <Routes>
                 <Route path="/user/login" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
+                <Route path="/inspector/login" element={<Login/>}/>
+                <Route path="/user/register" element={<Register/>}/>
+                <Route path="/inspector/register" element={<Register/>}/>
                 <Route path="/approve-registration" element={<ApproveRegistrations/>}/>
                 <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
                 <Route path="/about" element={<AboutUs/>}/>
                 <Route path='/user/dashboard' element={<UserDashboard />} />
-                <Route path='/user-profile' element={<UserProfile />} />
+                <Route path='/user/profile' element={<UserProfile />} />
                 <Route path='/inspector/dashboard' element={<InspecDashboard />} />
             </Routes>
         </Router>
