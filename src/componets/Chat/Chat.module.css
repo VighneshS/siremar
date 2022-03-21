@@ -5,6 +5,7 @@
     bottom: 20px;
     left: auto;
     position: fixed;
+    z-index: 1;
 }
 
 .chatBtn {
@@ -21,9 +22,11 @@
     background: #4CAF50;
     box-shadow: 0 2px 2px #888888;
     transition: color 0.3s, background-image 0.5s, ease-in-out;
+    z-index: 1;
 }
 
 .chat-btn:hover {
     background-image: linear-gradient(#b1ccda 49%, #96b4c5 51%);
     color: white;
+    z-index: 1;
 }
