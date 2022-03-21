@@ -2,7 +2,7 @@ import './App.css';
 import RegisterOut from './componets/Moveout/RegisterOut';
 import NavBar from "./componets/NavBar/NavBar";
 import Chat from "./componets/Chat/Chat";
-import BookFlights from './componets/Flight/BookFlights';
+import Chat from "./componets/Chat/Chat";
 import ApproveRegistrations from "./componets/ApproveRegistrations/ApproveRegistrations";
 import Register from './componets/Auth/Register';
 import Login from './componets/Auth/Login'
