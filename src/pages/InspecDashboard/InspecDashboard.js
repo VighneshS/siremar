@@ -13,6 +13,7 @@ import DiscountList from "../../componets/ApproveRegistrations/discount_list.jso
 
 import styles from "./inspecdash.module.css";
 import AddDiscount from "../../componets/AddDiscounts/AddDiscount";
+import NavBar from "../../componets/NavBar/NavBar";
 
 class InspecDashboard extends Component {
     state = {
@@ -55,6 +56,7 @@ class InspecDashboard extends Component {
         };
         return (
             <div>
+                <NavBar />
                 <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                     {modalWindowType()}
                 </Modal>

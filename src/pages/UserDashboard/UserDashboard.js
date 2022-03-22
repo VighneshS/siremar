@@ -10,6 +10,7 @@ import CourseRegister from "../../componets/CourseRegistration/Enrollment";
 import styles from "./userdashboard.module.css";
 import DiscountRate from "../../componets/DiscountRate/DiscountRate";
 import BookEvents from "../../componets/Events/BookEvents";
+import NavBar from "../../componets/NavBar/NavBar";
 
 class UserDashboard extends Component {
     state = {
@@ -63,6 +64,7 @@ class UserDashboard extends Component {
         };
         return (
             <div>
+                <NavBar />
                 <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                     {modalWindowType()}
                 </Modal>

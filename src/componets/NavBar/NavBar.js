@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import ReactDOM from "react-dom";
 import classes from './NavBar.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faTimes, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 
 class NavBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            menuToggle: true
+            menuToggle: true,
+            isLoggedIn: localStorage.getItem('isLoggedin')
         }
         this.menu = null;
         this.toggle = null;
@@ -64,6 +65,71 @@ class NavBar extends Component {
     }
 
     render() {
+        const isLogged = () => {
+            if(this.state.isLoggedIn) {
+                return(
+                    // ADD/EDIT CLASS TO MODIFY THE WIDTH OF THE SUBMENU
+                    <li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
+                        self.items.push(el)
+                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
+                        <a href="#"><FontAwesomeIcon icon={faUser} /></a>
+                        <ul className={classes.submenu}>
+                            <li className={classes.subItem}>
+                                <Link to="/user-profile">
+                                    View Profile
+                                </Link>
+                            </li>
+                            <li className={classes.subItem}>
+                                <Link to="/">
+                                    Log Out
+                                </Link>
+                            </li>
+                        </ul>
+                    </li>
+                )
+            } else {
+                return(
+                [<li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
+                    self.items.push(el)
+                }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
+                    <a tabIndex="0">Login</a>
+                    <ul className={classes.submenu}>
+                        <li className={classes.subItem}>
+                            <Link to="/user/login">
+                                Resident
+                            </Link>
+                        </li>
+                        <li className={classes.subItem}>
+                            <Link to="/inspector/login">
+                                Inspector
+                            </Link>
+                        </li>
+                        <li className={classes.subItem}>
+                            <Link to="/admin/login">
+                                Admin
+                            </Link>
+                        </li>
+                    </ul>
+                </li>,
+                <li className={`${classes.item} ${classes.button} ${classes.hasSubmenu}`} ref={function (el) {
+                    self.items.push(el)
+                }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a>Sign Up</a>
+                <ul className={classes.submenu}>
+                        <li className={classes.subItem}>
+                            <Link to="/user/register">
+                                Resident
+                            </Link>
+                        </li>
+                        <li className={classes.subItem}>
+                            <Link to="/inspector/register">
+                                Inspector
+                            </Link>
+                        </li>
+                    </ul>
+                </li>]
+                )
+            }
+        }
         let self = this
         return (<div>
             <nav>
@@ -96,44 +162,7 @@ class NavBar extends Component {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Contact</a>
                     </li> */}
-                    <li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
-                        self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
-                        <a tabIndex="0">Login</a>
-                        <ul className={classes.submenu}>
-                            <li className={classes.subItem}>
-                                <Link to="/user/login">
-                                    Resident
-                                </Link>
-                            </li>
-                            <li className={classes.subItem}>
-                                <Link to="/inspector/login">
-                                    Inspector
-                                </Link>
-                            </li>
-                            <li className={classes.subItem}>
-                                <Link to="/admin/login">
-                                    Admin
-                                </Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li className={`${classes.item} ${classes.button} ${classes.hasSubmenu}`} ref={function (el) {
-                        self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a>Sign Up</a>
-                    <ul className={classes.submenu}>
-                            <li className={classes.subItem}>
-                                <Link to="/user/register">
-                                    Resident
-                                </Link>
-                            </li>
-                            <li className={classes.subItem}>
-                                <Link to="/inspector/register">
-                                    Inspector
-                                </Link>
-                            </li>
-                        </ul>
-                    </li>
+                    {isLogged()}
                     <li className={classes.toggle} onClick={this.toggleMenu} ref={function (el) {
                         self.toggle = el;
                     }}><a href="#">
