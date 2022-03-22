@@ -18,9 +18,9 @@ import LandingPage from './pages/LandingPage/LandingPage';
 function App() {
     return (
         <Router>
-            <NavBar/>
+            {/* <NavBar/> */}
             <Chat/>
-            <Routes>       
+            <Routes>
                 <Route path="/" element={<LandingPage />}/>
                 <Route path="/user/login" element={<Login/>}/>
                 <Route path="/inspector/login" element={<Login/>}/>
@@ -31,7 +31,7 @@ function App() {
                 <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
                 {/* <Route path="/about" element={<AboutUs/>}/> */}
                 <Route path='/user/dashboard' element={<UserDashboard />} />
-                <Route path='/user/profile' element={<UserProfile />} />
+                <Route path='/user-profile' element={<UserProfile />} />
                 <Route path='/inspector/dashboard' element={<InspecDashboard />} />
                 {/* <Route path='/contact' element={<ContactUs />} /> */}
             </Routes>

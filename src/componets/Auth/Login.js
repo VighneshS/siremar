@@ -12,7 +12,9 @@ class Login extends Component {
         };
     }
 
-    handleLogin = () => {};
+    handleLogin = () => {
+        localStorage.setItem('isLoggedin', true)
+    };
 
     render() {
         const LoginRouting = () => {
@@ -77,9 +79,11 @@ class Login extends Component {
                 <div className={styles.col_100}>
                     <input type="checkbox" checked="checked" name="remember" /> Remember me
                 </div>
-                <div className={styles.col_50}>{LoginRouting()}</div>
+                <div className={styles.col_50} onClick={this.handleLogin}>{LoginRouting()}</div>
                 <div className={styles.col_50}>
-                    <button className={styles.bttn}>Cancel</button>
+                    <Link to="/">
+                        <button className={styles.bttn}>Cancel</button>
+                    </Link>
                 </div>
 
                 {/* <label></label> */}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NavBar from "../../componets/NavBar/NavBar";
 
 import styles from "./userprofile.module.css";
 
@@ -6,6 +7,9 @@ class UserProfile extends Component {
     state = {};
     render() {
         return (
+            <div>
+                <NavBar />
+            
             <div className={styles.main_cards}>
                 <div className={styles.cards__profile}>
                     <div className={styles.overview__profile_header}>
@@ -45,6 +49,7 @@ class UserProfile extends Component {
                         </table>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
