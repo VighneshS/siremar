@@ -136,7 +136,7 @@ class NavBar extends Component {
                 <ul id="menu" className={classes.menu} ref={function (el) {
                     self.menu = el;
                 }}>
-                    <li className={classes.logo}><a href="#"><strong>Siremar</strong></a></li>
+                    <li className={classes.logo}><a href="/"><strong>Siremar</strong></a></li>
                     <li className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem} onClick={this.toggleItem}
