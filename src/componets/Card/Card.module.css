@@ -1,5 +1,6 @@
 .card {
     box-shadow: 0 0 3px rgb(0, 0, 0, 0.1);
+    max-width: 90vw;
 }
 
 .title {
@@ -18,4 +19,11 @@
     align-items: center;
     text-align: center;
     background: #fafafa;
+}
+
+/* Desktop menu */
+@media all and (min-width: 960px) {
+    .content {
+        max-width: unset;
+    }
 }

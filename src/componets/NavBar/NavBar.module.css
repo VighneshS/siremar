@@ -89,6 +89,7 @@ a {
 .submenuActive {
     background-color: #111;
     border-radius: 3px;
+    z-index: 1;
 }
 
 /* Tablet menu */
