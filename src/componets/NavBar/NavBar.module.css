@@ -29,6 +29,7 @@ a {
 }
 .item.button {
     padding: 9px 5px;
+    cursor: pointer;
 }
 .item:not(.button) a:hover,
 .item a:hover::after {

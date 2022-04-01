@@ -19,14 +19,10 @@
 .fixed_header{
     top: 65px;
     width: 100%;
-    position: fixed;
+    position: absolute;
     background: ghostwhite;
     padding: 10px 0;
     color: ghostwhite;
-}
-
-body {
-    overflow-y: hidden;
 }
 
 div.scroll {
