@@ -7,6 +7,8 @@ jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
+    env:
+      CI: false
     steps:
       - uses: actions/checkout@v2.1.0
         with:
@@ -14,8 +16,6 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm install
       - run: npm run build
-          - env:
-              CI: false
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
