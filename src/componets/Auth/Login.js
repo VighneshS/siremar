@@ -1,50 +1,73 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
-import { Link } from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 
 import styles from "./auth.module.css";
+import {login} from "../utils/Services";
 
 class Login extends Component {
     constructor(props) {
         super();
         this.state = {
             path: window.location.pathname,
+            user_id: null,
+            password: null,
+            redirectURI: null,
+            redirect: false,
+            err: null
         };
+        this.handleUserIDChange = this.handleUserIDChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
-    handleLogin = () => {
-        localStorage.setItem('isLoggedin', true)
+    routeLogin = () => {
+        if (this.state.path.includes("user")) {
+            this.setState({redirectURI: "/user/dashboard"})
+        } else if (this.state.path.includes("admin")) {
+            this.setState({redirectURI: "/admin/dashboard"})
+        } else {
+            this.setState({redirectURI: "/inspector/dashboard"})
+        }
+        this.setState({redirect: true})
     };
 
-    render() {
-        const LoginRouting = () => {
-            if (this.state.path.includes("user")) {
-                return (
-                    <Link to="/user/dashboard">
-                        <button className={styles.bttn} type="submit">
-                            Login
-                        </button>
-                    </Link>
-                );
-            } else if (this.state.path.includes("admin")) {
-                return (
-                    <Link to="/admin/dashboard">
-                        <button className={styles.bttn} type="submit">
-                            Login
-                        </button>
-                    </Link>
-                );
-            } else {
-                return (
-                    <Link to="/inspector/dashboard">
-                        <button className={styles.bttn} type="submit">
-                            Login
-                        </button>
-                    </Link>
-                );
-            }
-        };
+    handleLogin = () => {
+        this.setState({err: null});
+        login({
+            user_id: this.state.user_id,
+            password: this.state.password,
+            user_role: this.getRole()
+        }).then((response) => {
+            if (response.data.user_id) {
+                localStorage.setItem('isLoggedin', true)
+                this.routeLogin()
 
+            } else {
+                this.setState({err: {message: response.data}});
+                console.log("Invalid User");
+            }
+        });
+    };
+
+    handleUserIDChange(event) {
+        this.setState({user_id: event.target.value});
+    }
+
+    handlePasswordChange(event) {
+        this.setState({password: event.target.value});
+    }
+
+    getRole() {
+        if (this.state.path.includes("user")) {
+            return "U101";
+        } else if (this.state.path.includes("admin")) {
+            return "A101";
+        } else {
+            return "I101";
+        }
+    }
+
+    render() {
         const loginType = () => {
             if (this.state.path.includes("user")) {
                 return (
@@ -61,37 +84,61 @@ class Login extends Component {
             }
         }
 
-        return (
-            <div className={styles.container}>
-                <div className={styles.col_100}>
-                    {loginType()}
-                </div>
-                <label for="uname">
-                    <b>Username</b>
-                </label>
-                <input type="text" placeholder="Enter Username" name="uname" required />
+        const showError = () => {
+            if (this.state.err) {
+                return (<div className={styles.alert}>
+                    <strong> Error!! </strong> {this.state.err.message}
+                </div>)
+            }
+        }
 
-                <label for="psw">
-                    <b>Password</b>
-                </label>
-                <input type="password" placeholder="Enter Password" name="psw" required />
+        if (this.state.redirect) {
+            return <Navigate to={this.state.redirectURI}/>;
+        } else {
 
-                <div className={styles.col_100}>
-                    <input type="checkbox" checked="checked" name="remember" /> Remember me
-                </div>
-                <div className={styles.col_50} onClick={this.handleLogin}>{LoginRouting()}</div>
-                <div className={styles.col_50}>
-                    <Link to="/">
-                        <button className={styles.bttn}>Cancel</button>
-                    </Link>
-                </div>
+            return (
+                <div className={styles.container}>
+                    <div className={styles.col_100}>
+                        {loginType()}
+                    </div>
+                    <div className={styles.col_100}>
+                        {showError()}
+                    </div>
+                    <label for="uname">
+                        <b>User ID</b>
+                    </label>
+                    <input autoComplete={"off"} onChange={this.handleUserIDChange} type="number"
+                           value={this.state.user_id} placeholder="Enter User ID"
+                           name="uname" required/>
 
-                {/* <label></label> */}
-                {/* <span className={styles.psw}>
+                    <label for="psw">
+                        <b>Password</b>
+                    </label>
+                    <input type="password" onChange={this.handlePasswordChange} value={this.state.password}
+                           placeholder="Enter Password" name="psw"
+                           required/>
+
+                    <div className={styles.col_100}>
+                        <input type="checkbox" checked="checked" name="remember"/> Remember me
+                    </div>
+                    <div className={styles.col_50} onClick={this.handleLogin}>
+                        <button className={styles.bttn} type="submit">
+                            Login
+                        </button>
+                    </div>
+                    <div className={styles.col_50}>
+                        <Link to="/">
+                            <button className={styles.bttn}>Cancel</button>
+                        </Link>
+                    </div>
+
+                    {/* <label></label> */}
+                    {/* <span className={styles.psw}>
                     {RegisterRouting()}
                 </span> */}
-            </div>
-        );
+                </div>
+            );
+        }
     }
 }
 
