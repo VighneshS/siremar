@@ -1,6 +1,4 @@
 import './App.css';
-
-import NavBar from "./componets/NavBar/NavBar";
 import Chat from "./componets/Chat/Chat";
 import ApproveRegistrations from "./componets/ApproveRegistrations/ApproveRegistrations";
 import Register from './componets/Auth/Register';
@@ -11,9 +9,35 @@ import InspecDashboard from './pages/InspecDashboard/InspecDashboard';
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AdminDashboard from "./componets/AdminDashboard/AdminDashboard";
-import AboutUs from "./componets/AboutUs/AboutUs";
-import ContactUs from './componets/ContactUs/ContactUs';
 import LandingPage from './pages/LandingPage/LandingPage';
+import axios from "axios";
+
+export const endPoints = {
+    addflights: `addflights.php`,
+    approveuser: `approveuser.php`,
+    createuser: `createuser.php`,
+    getcouponrate: `getcouponrate.php`,
+    getflights: `getflights.php`,
+    getprofile: `getprofile.php`,
+    login: `login.php`,
+    register: `createuser.php`,
+    addDiscount: `add_discount.php`,
+    addEvents: `addevents.php`,
+    approveMoveout: `approve_moveout.php`,
+    bookevents: `bookevents.php`,
+    bookflights: `bookflights.php`,
+    booktickets: `booktickets.php`,
+    displayDiscounts: `display_discounts.php`,
+    getBookedevents: `get_bookedevents.php`,
+    getmoveOuts: `getmove_outs.php`,
+    gettickets: `gettickets.php`,
+    blog: `https://siremar.blog.vxs8596.uta.cloud/`
+}
+
+export const api = axios.create({
+    baseURL: `http://localhost/`
+    // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
+})
 
 function App() {
     return (
@@ -21,7 +45,7 @@ function App() {
             {/* <NavBar/> */}
             <Chat/>
             <Routes>
-                <Route path="/" element={<LandingPage />}/>
+                <Route path="/" element={<LandingPage/>}/>
                 <Route path="/user/login" element={<Login/>}/>
                 <Route path="/inspector/login" element={<Login/>}/>
                 <Route path="/admin/login" element={<Login/>}/>
@@ -30,14 +54,14 @@ function App() {
                 <Route path="/approve-registration" element={<ApproveRegistrations/>}/>
                 <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
                 {/* <Route path="/about" element={<AboutUs/>}/> */}
-                <Route path='/user/dashboard' element={<UserDashboard />} />
-                <Route path='/user-profile' element={<UserProfile />} />
-                <Route path='/inspector/dashboard' element={<InspecDashboard />} />
+                <Route path='/user/dashboard' element={<UserDashboard/>}/>
+                <Route path='/user-profile' element={<UserProfile/>}/>
+                <Route path='/inspector/dashboard' element={<InspecDashboard/>}/>
                 {/* <Route path='/contact' element={<ContactUs />} /> */}
             </Routes>
         </Router>
-)
-    ;
+    )
+        ;
 }
 
 export default App;

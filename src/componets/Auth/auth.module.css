@@ -73,3 +73,23 @@ span.psw {
   margin-top: 6px;
   padding: 6px;
 }
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.red {
+  background-color: #f44336;
+}
+
+.green {
+  background-color: #1d7902;
+}
+
+.registerForm {
+  padding: unset;
+  margin: unset;
+  border: unset;
+}
