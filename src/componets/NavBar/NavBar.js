@@ -4,6 +4,7 @@ import classes from './NavBar.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faTimes, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
+import {endPoints} from "../../App";
 
 class NavBar extends Component {
     constructor(props) {
@@ -157,7 +158,7 @@ class NavBar extends Component {
                     </li> */}
                     <li className={classes.item} ref={function (el) {
                         self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Blog</a></li>
+                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href={endPoints.blog}>Blog</a></li>
                     {/* <li className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Contact</a>

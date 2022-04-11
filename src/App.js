@@ -20,11 +20,23 @@ export const endPoints = {
     getflights: `getflights.php`,
     getprofile: `getprofile.php`,
     login: `login.php`,
-    register: `register.php`
+    register: `createuser.php`,
+    addDiscount: `add_discount.php`,
+    addEvents: `addevents.php`,
+    approveMoveout: `approve_moveout.php`,
+    bookevents: `bookevents.php`,
+    bookflights: `bookflights.php`,
+    booktickets: `booktickets.php`,
+    displayDiscounts: `display_discounts.php`,
+    getBookedevents: `get_bookedevents.php`,
+    getmoveOuts: `getmove_outs.php`,
+    gettickets: `gettickets.php`,
+    blog: `https://siremar.blog.vxs8596.uta.cloud/`
 }
 
 export const api = axios.create({
     baseURL: `http://localhost/`
+    // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
 })
 
 function App() {
