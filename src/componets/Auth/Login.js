@@ -4,6 +4,7 @@ import {Link, Navigate} from "react-router-dom";
 
 import styles from "./auth.module.css";
 import {login} from "../utils/Services";
+import utils from "../utils/Utilities"
 
 class Login extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class Login extends Component {
         login({
             user_id: this.state.user_id,
             password: this.state.password,
-            user_role: this.getRole()
+            user_role: utils.getRole(this.state.path)
         }).then((response) => {
             if (response.data.user_id) {
                 localStorage.setItem('isLoggedin', true)
@@ -44,7 +45,6 @@ class Login extends Component {
 
             } else {
                 this.setState({err: {message: response.data}});
-                console.log("Invalid User");
             }
         });
     };
@@ -55,16 +55,6 @@ class Login extends Component {
 
     handlePasswordChange(event) {
         this.setState({password: event.target.value});
-    }
-
-    getRole() {
-        if (this.state.path.includes("user")) {
-            return "U101";
-        } else if (this.state.path.includes("admin")) {
-            return "A101";
-        } else {
-            return "I101";
-        }
     }
 
     render() {
