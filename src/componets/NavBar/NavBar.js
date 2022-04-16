@@ -57,7 +57,6 @@ class NavBar extends Component {
         if (!isClickInside && active_menu.querySelector("." + classes.submenuActive)) {
             let activeSubMenu = ReactDOM.findDOMNode(active_menu.querySelector("." + classes.submenuActive))
             activeSubMenu.classList.remove("." + classes.submenuActive);
-            // console.log(activeSubMenu, "." + classes.submenuActive);
         }
     }
 
@@ -72,7 +71,7 @@ class NavBar extends Component {
                     // ADD/EDIT CLASS TO MODIFY THE WIDTH OF THE SUBMENU
                     <li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
                         self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
+                    }} onClick={this.toggleItem}>
                         <a href="#"><FontAwesomeIcon icon={faUser} /></a>
                         <ul className={classes.submenu}>
                             <li className={classes.subItem}>
@@ -92,7 +91,7 @@ class NavBar extends Component {
                 return(
                 [<li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
                     self.items.push(el)
-                }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
+                }} onClick={this.toggleItem}>
                     <a tabIndex="0">Login</a>
                     <ul className={classes.submenu}>
                         <li className={classes.subItem}>
@@ -114,7 +113,7 @@ class NavBar extends Component {
                 </li>,
                 <li className={`${classes.item} ${classes.button} ${classes.hasSubmenu}`} ref={function (el) {
                     self.items.push(el)
-                }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a>Sign Up</a>
+                }} onClick={this.toggleItem}><a>Sign Up</a>
                 <ul className={classes.submenu}>
                         <li className={classes.subItem}>
                             <Link to="/user/register">
@@ -140,29 +139,10 @@ class NavBar extends Component {
                     <li className={classes.logo}><a href="/"><strong>Siremar</strong></a></li>
                     <li className={classes.item} ref={function (el) {
                         self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem} onClick={this.toggleItem}
-                        onKeyPress={this.toggleItem}><Link to="/">Home</Link></li>
-                    {/* <li className={classes.item} ref={function (el) {
-                        self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><Link to="/about">About</Link>
-                    </li> */}
-                    {/* <li className={`${classes.item} ${classes.hasSubmenu}`} ref={function (el) {
-                        self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}>
-                        <a tabIndex="0">Sample</a>
-                        <ul className={classes.submenu}>
-                            <li className={classes.subItem}><a href="#">Submenu 1</a></li>
-                            <li className={classes.subItem}><a href="#">Submenu 2</a></li>
-                            <li className={classes.subItem}><a href="#">Submenu 3</a></li>
-                        </ul>
-                    </li> */}
+                    }} onClick={this.toggleItem}><Link to="/">Home</Link></li>
                     <li className={classes.item} ref={function (el) {
                         self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href={endPoints.blog}>Blog</a></li>
-                    {/* <li className={classes.item} ref={function (el) {
-                        self.items.push(el)
-                    }} onClick={this.toggleItem} onKeyPress={this.toggleItem}><a href="#">Contact</a>
-                    </li> */}
+                    }} onClick={this.toggleItem}><a href={endPoints.blog}>Blog</a></li>
                     {isLogged()}
                     <li className={classes.toggle} onClick={this.toggleMenu} ref={function (el) {
                         self.toggle = el;
