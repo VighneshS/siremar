@@ -11,11 +11,13 @@
 }
 
 .about .wrapper {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#7bd3f7), to(rgba(0, 0, 0, 0)));;
+    height: 100vh;
+    background: -moz-linear-gradient(45deg, rgba(213, 15, 61, 0.7), rgba(10, 198, 168, 0.4) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(213, 15, 61, 0.7), rgba(10, 198, 168, 0.4) 100%);
 }
 
 .about h2 {
-    color: darkgreen;
+    color: #adff6e;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 28px;
     font-weight: 400;
@@ -26,7 +28,7 @@
 
 
 .about p {
-    color: black;
+    color: #ffffff;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 18px;
     line-height: 32px;
@@ -37,16 +39,17 @@
 .about ul {
     margin: 24px 0 0 50px;
 }
-.about ul li {}
+.about ul li {
+    color: #ffffff;
+    font-size: large;
+}
 
-.about ul li:before { content: '❤️'; margin-left: -20px; margin-right: 10px; }
+.about ul li:before { margin-left: -20px; margin-right: 10px; }
 
 .about {
     min-height: 100vh;
     background-image: url("../../assets/images/islands.png");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat; background-size: cover;
 }

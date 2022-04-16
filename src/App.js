@@ -55,6 +55,7 @@ function App() {
                 <Route path="/inspector/register" element={<Register/>}/>
                 <Route path="/approve-registration" element={<ApproveRegistrations/>}/>
                 <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
+                <Route path="/admin/services" element={<InspecDashboard/>}/>
                 {/* <Route path="/about" element={<AboutUs/>}/> */}
                 <Route path='/user/dashboard' element={<UserDashboard/>}/>
                 <Route path='/user-profile' element={<UserProfile/>}/>

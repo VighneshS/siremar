@@ -38,13 +38,12 @@ export default class Discounts extends Component {
                 id: row.id,
                 discount_code: row["Coupon Code"],
                 events_rate: row["Discounts on Events"],
-                school_rate: row["Discounts on Schools"],
                 ferry_rate: row["Discounts on Ferries"],
-                clinic_rate: row["Discounts on Clinics"],
                 flight_rate: row["Discounts on Flights"],
+                clinic_rate: row["Discounts on Clinics"],
+                school_rate: row["Discounts on Schools"],
                 is_active: row["Active"]
             }
-            console.log(data);
             this.setState({editModelData: data});
             this.setState({showEditModal: true});
         }

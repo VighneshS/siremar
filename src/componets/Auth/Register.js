@@ -143,7 +143,6 @@ class Register extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.user);
         if (utils.validateForm(this.state.errors, this.state.user)) {
             this.registerUser();
             this.setState({isValidForm: true});

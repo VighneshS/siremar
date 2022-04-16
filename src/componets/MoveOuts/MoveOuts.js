@@ -45,10 +45,8 @@ export default class MoveOuts extends Component {
     }
 
     approveMoveOut = (e, user) => {
-        console.log(user);
         approveMoveOut(user.id).then(response => {
             if (response.data) {
-                console.log(response.data);
                 this.state.users.forEach(u => {
                     if (u.id === user.id) {
                         u["Approved"] = 'Yes';

@@ -22,7 +22,6 @@ class BarChart extends Component {
     constructor(props) {
         super(props);
         this.chartData = props.chartData;
-        console.log(this.chartData);
         this.title = props.title;
     }
 
