@@ -88,8 +88,6 @@ span.psw {
   background-color: #1d7902;
 }
 
-.registerForm {
-  padding: unset;
-  margin: unset;
-  border: unset;
+.error {
+  color: #f44336;
 }

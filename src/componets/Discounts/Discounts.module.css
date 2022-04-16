@@ -1,0 +1,23 @@
+.badge {
+    color: #fff;
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.url {
+    white-space: nowrap;
+}
+
+.green {
+    background-color: #4CAF50
+}
+
+.red {
+    background-color: #ff0000
+}
+.no_border{
+    border: unset;
+}

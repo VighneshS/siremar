@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Modal from "../../componets/Modal/Modal";
 
 import BookFlights from "../../componets/Flight/BookFlights";
@@ -11,23 +11,50 @@ import styles from "./userdashboard.module.css";
 import DiscountRate from "../../componets/DiscountRate/DiscountRate";
 import BookEvents from "../../componets/Events/BookEvents";
 import NavBar from "../../componets/NavBar/NavBar";
+import {getBookedTickets, getFlights, getMoveOuts, getUserAppointments} from "../../componets/utils/Services";
+import utils from "../../componets/utils/Utilities";
 
 class UserDashboard extends Component {
     state = {
         active: "",
         showEditModal: false,
         bookingType: "",
+        tableData: null
     };
 
     handleaccordion = (e) => {
+        this.setState({tableData: null})
         let clicked = e.currentTarget.id;
-        console.log(clicked);
         if (this.state.active === clicked) {
-            this.setState({ active: "" });
+            this.setState({active: ""});
         } else {
-            this.setState({ active: clicked });
+            this.setState({active: clicked});
+            this.loadSectionData(clicked);
         }
     };
+
+    loadSectionData(clicked) {
+        switch (clicked) {
+            case "first": {
+                this.loadBookings(utils.FLIGHT);
+                break;
+            }
+            case "second": {
+                this.loadBookings(utils.FERRY);
+                break;
+            }
+            case "third": {
+                this.loadAppointments();
+                break;
+            }
+            case "fourth": {
+                this.loadMoveOuts();
+                break;
+            }
+            default:
+                console.error("Error Unknown component");
+        }
+    }
 
     handleBooking = (type) => {
         console.log(type);
@@ -41,34 +68,114 @@ class UserDashboard extends Component {
     };
 
     closeEditModal = () => {
-        this.setState({ showEditModal: false });
+        this.setState({showEditModal: false});
     };
+
+    loadBookings(type) {
+        getBookedTickets(type).then(response => {
+            this.setState({tableData: response.data.message})
+        });
+    }
+
+    loadAppointments() {
+        getUserAppointments().then(response => {
+            this.setState({tableData: response.data.message})
+        });
+    }
+
+    loadMoveOuts() {
+        getMoveOuts(utils.getCurrentUser()).then(response => {
+            this.setState({tableData: response.data.message})
+        });
+    }
+
+    renderBookingsTable() {
+        if (this.state.tableData) {
+            return this.state.tableData.map((data) => {
+                return (<tr key={utils.getRandomUniqueId()}>
+                    <td>{data.source}</td>
+                    <td>{data.destination}</td>
+                    <td>{data.transport_id}</td>
+                    <td>{data.date}</td>
+                    <td>{data.time}</td>
+                </tr>)
+            });
+        }
+        return utils.getProgressCircle();
+    }
+
+    renderAppointmentsTable() {
+        if (this.state.tableData) {
+            return this.state.tableData.map((data) => {
+                return (<tr key={utils.getRandomUniqueId()}>
+                    <td>{data.name}</td>
+                    <td>{data.address}</td>
+                    <td>{data.specialist}</td>
+                    <td>{data.date}</td>
+                    <td>{data.time}</td>
+                </tr>)
+            });
+        }
+        return utils.getProgressCircle();
+    }
+
+    renderMoveOuts() {
+        if (this.state.tableData) {
+            return this.state.tableData.map((data) => {
+                return (<tr key={utils.getRandomUniqueId()}>
+                    <td>{data.created_on}</td>
+                    <td>{data.created_on}</td>
+                    <td>{data.comments}</td>
+                    <td>{data.is_approved ? 'APPROVED' : 'PENDING'}</td>
+                </tr>)
+            });
+        }
+        return utils.getProgressCircle();
+    }
+
+    renderCourseEnrollments() {
+        if (this.state.tableData) {
+            return this.state.tableData.map((data) => {
+                return (<tr key={utils.getRandomUniqueId()}>
+                    <td>{data.created_on}</td>
+                    <td>{data.created_on}</td>
+                    <td>{data.comments}</td>
+                    <td>{data.is_approved ? 'APPROVED' : 'PENDING'}</td>
+                </tr>)
+            });
+        }
+        return utils.getProgressCircle();
+    }
+
+    componentDidMount() {
+    }
 
     render() {
         const modalWindowType = () => {
             if (this.state.bookingType === "flight") {
-                return <BookFlights />;
+                return <BookFlights/>;
             } else if (this.state.bookingType === "ferry") {
-                return <BookFerry />;
+                return <BookFerry/>;
             } else if (this.state.bookingType === "apts") {
-                return <BookApts />;
+                return <BookApts/>;
             } else if (this.state.bookingType === "moveouts") {
-                return <RegisterOut />;
+                return <RegisterOut/>;
             } else if (this.state.bookingType === "course") {
-                return <CourseRegister />;
+                return <CourseRegister/>;
             } else if (this.state.bookingType === "events") {
-                return <BookEvents />;
+                return <BookEvents/>;
             } else {
                 return "";
             }
         };
+
         return (
             <div>
-                <NavBar />
+                <NavBar/>
                 <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                     {modalWindowType()}
                 </Modal>
-                <DiscountRate />
+                <DiscountRate/>
                 <div className={styles.col_100}></div>
                 <div className={styles.accordion_body}>
                     <div className={styles.accordion}>
@@ -95,41 +202,21 @@ class UserDashboard extends Component {
                             >
                                 <table className={styles.roottable}>
                                     <thead>
-                                        <tr>
-                                            <th>From</th>
-                                            <th>To</th>
-                                            <th>Ferry Name</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                        </tr>
+                                    <tr>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Flight Number</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Siremar Airport North</td>
-                                            <td>Siremar Airport South</td>
-                                            <td>ABC Airlines</td>
-                                            <td>03-14-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Siremar Airport North</td>
-                                            <td>Siremar Airport South</td>
-                                            <td>ABC Airlines</td>
-                                            <td>03-14-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Siremar Airport North</td>
-                                            <td>Siremar Airport South</td>
-                                            <td>ABC Airlines</td>
-                                            <td>03-14-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
+                                    {this.renderBookingsTable()}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div className={styles.container}>
                             <div className={`${styles.col_50} ${styles.title}`}>Ferry Bookings</div>
                             <div className={[styles.col_25]}>
@@ -151,41 +238,21 @@ class UserDashboard extends Component {
                             >
                                 <table className={styles.roottable}>
                                     <thead>
-                                        <tr>
-                                            <th>From</th>
-                                            <th>To</th>
-                                            <th>Ferry Name</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                        </tr>
+                                    <tr>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Ferry Number</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Siremar Dock A</td>
-                                            <td>Siremar Dock B</td>
-                                            <td>ABC Ferry</td>
-                                            <td>03-14-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Siremar Dock A</td>
-                                            <td>Siremar Dock B</td>
-                                            <td>ABC Ferry</td>
-                                            <td>03-14-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Siremar Dock A</td>
-                                            <td>Siremar Dock B</td>
-                                            <td>ABC Ferry</td>
-                                            <td>03-14-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
+                                    {this.renderBookingsTable()}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div className={styles.container}>
                             <div className={`${styles.col_50} ${styles.title}`}>
                                 Clinic Appointment Bookings
@@ -209,41 +276,21 @@ class UserDashboard extends Component {
                             >
                                 <table className={styles.roottable}>
                                     <thead>
-                                        <tr>
-                                            <th>Clinic Name</th>
-                                            <th>Address</th>
-                                            <th>Specialist</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Clinic Name</th>
+                                        <th>Address</th>
+                                        <th>Specialist</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>ABC Clinic</td>
-                                            <td>1025 E Mitchell Rd</td>
-                                            <td>Dentist</td>
-                                            <td>03-24-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ABC Clinic</td>
-                                            <td>1025 E Mitchell Rd</td>
-                                            <td>Dentist</td>
-                                            <td>03-24-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ABC Clinic</td>
-                                            <td>1025 E Mitchell Rd</td>
-                                            <td>Dentist</td>
-                                            <td>03-24-2022</td>
-                                            <td>13:00</td>
-                                        </tr>
+                                    {this.renderAppointmentsTable()}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div className={styles.container}>
                             <div className={`${styles.col_50} ${styles.title}`}>
                                 Register Move Out
@@ -267,37 +314,20 @@ class UserDashboard extends Component {
                             >
                                 <table className={styles.roottable}>
                                     <thead>
-                                        <tr>
-                                            <th>Requested Date</th>
-                                            <th>Moveout Date</th>
-                                            <th>Reason</th>
-                                            <th>Approval Status</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Requested Date</th>
+                                        <th>Moveout Date</th>
+                                        <th>Reason</th>
+                                        <th>Approval Status</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>03-14-2022</td>
-                                            <td>03-22-2022</td>
-                                            <td>Loren Ipsum</td>
-                                            <td>PENDING</td>
-                                        </tr>
-                                        <tr>
-                                            <td>03-14-2022</td>
-                                            <td>03-22-2022</td>
-                                            <td>Loren Ipsum</td>
-                                            <td>PENDING</td>
-                                        </tr>
-                                        <tr>
-                                            <td>03-14-2022</td>
-                                            <td>03-22-2022</td>
-                                            <td>Loren Ipsum</td>
-                                            <td>PENDING</td>
-                                        </tr>
+                                    {this.renderMoveOuts()}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div className={styles.container}>
                             <div className={`${styles.col_50} ${styles.title}`}>
                                 Course Enrollment
@@ -321,33 +351,33 @@ class UserDashboard extends Component {
                             >
                                 <table className={styles.roottable}>
                                     <thead>
-                                        <tr>
-                                            <th>Campus</th>
-                                            <th>Course Name</th>
-                                            <th>Section</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Campus</th>
+                                        <th>Course Name</th>
+                                        <th>Section</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>SW Campus</td>
-                                            <td>CSE 6324</td>
-                                            <td>#2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SW Campus</td>
-                                            <td>CSE 6324</td>
-                                            <td>#2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SW Campus</td>
-                                            <td>CSE 6324</td>
-                                            <td>#2</td>
-                                        </tr>
+                                    <tr>
+                                        <td>SW Campus</td>
+                                        <td>CSE 6324</td>
+                                        <td>#2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SW Campus</td>
+                                        <td>CSE 6324</td>
+                                        <td>#2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SW Campus</td>
+                                        <td>CSE 6324</td>
+                                        <td>#2</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div className={styles.container}>
                             <div className={`${styles.col_50} ${styles.title}`}>Events</div>
                             {/* <div className={[styles.col_25]}>
@@ -369,42 +399,42 @@ class UserDashboard extends Component {
                             >
                                 <table className={styles.roottable}>
                                     <thead>
-                                        <tr>
-                                            <th>Event Name</th>
-                                            <th>Venue</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Venue</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>The Weekend Concert</td>
-                                            <td>1142 E Mitchell Ave</td>
-                                            <td>03-12-2022</td>
-                                            <td>13:00</td>
-                                            <td>
-                                                <center>
-                                                    <button>Booked</button>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>AC DC Concert</td>
-                                            <td>2452 W Mitchell Ave</td>
-                                            <td>03-11-2022</td>
-                                            <td>22:00</td>
-                                            <td>
-                                                <center>
-                                                    <button>Book</button>
-                                                </center>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>The Weekend Concert</td>
+                                        <td>1142 E Mitchell Ave</td>
+                                        <td>03-12-2022</td>
+                                        <td>13:00</td>
+                                        <td>
+                                            <center>
+                                                <button>Booked</button>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>AC DC Concert</td>
+                                        <td>2452 W Mitchell Ave</td>
+                                        <td>03-11-2022</td>
+                                        <td>22:00</td>
+                                        <td>
+                                            <center>
+                                                <button>Book</button>
+                                            </center>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div className={styles.container}>
                             <div className={`${styles.col_50} ${styles.title}`}>
                                 SIREMAR Businesses
@@ -428,24 +458,24 @@ class UserDashboard extends Component {
                             >
                                 <table className={styles.roottable}>
                                     <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Address</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Walmart</td>
-                                            <td>1324 New York Ave</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Walmart</td>
-                                            <td>1324 New York Ave</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Walmart</td>
-                                            <td>1324 New York Ave</td>
-                                        </tr>
+                                    <tr>
+                                        <td>Walmart</td>
+                                        <td>1324 New York Ave</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Walmart</td>
+                                        <td>1324 New York Ave</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Walmart</td>
+                                        <td>1324 New York Ave</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

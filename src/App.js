@@ -28,9 +28,11 @@ export const endPoints = {
     bookflights: `bookflights.php`,
     booktickets: `booktickets.php`,
     displayDiscounts: `display_discounts.php`,
+    getUsers: `get_users.php`,
     getBookedevents: `get_bookedevents.php`,
     getmoveOuts: `getmove_outs.php`,
     gettickets: `gettickets.php`,
+    get_user_appointments: `get_user_appointments.php`,
     blog: `https://siremar.blog.vxs8596.uta.cloud/`
 }
 
@@ -60,8 +62,7 @@ function App() {
                 {/* <Route path='/contact' element={<ContactUs />} /> */}
             </Routes>
         </Router>
-    )
-        ;
+    );
 }
 
 export default App;

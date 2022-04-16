@@ -15,6 +15,7 @@ class Login extends Component {
             password: null,
             redirectURI: null,
             redirect: false,
+            isRememberMe: true,
             err: null
         };
         this.handleUserIDChange = this.handleUserIDChange.bind(this);
@@ -41,6 +42,7 @@ class Login extends Component {
         }).then((response) => {
             if (response.data.user_id) {
                 localStorage.setItem('isLoggedin', true)
+                localStorage.setItem(utils.CURRENT_USER, response.data.user_id)
                 this.routeLogin()
 
             } else {
@@ -109,7 +111,8 @@ class Login extends Component {
                            required/>
 
                     <div className={styles.col_100}>
-                        <input type="checkbox" checked="checked" name="remember"/> Remember me
+                        <input type="checkbox" defaultChecked={this.isRememberMe} checked="checked"
+                               name="remember"/> Remember me
                     </div>
                     <div className={styles.col_50} onClick={this.handleLogin}>
                         <button className={styles.bttn} type="submit">

@@ -105,10 +105,11 @@ transform: translateY(-50%);
 
 .expand {
     /* position: relative; */
+    overflow-y: auto ;
     background: white;
     height: 200px;
     width: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     transition: 0.5s;
 }
 
