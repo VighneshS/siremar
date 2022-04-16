@@ -14,7 +14,7 @@ class UserProfile extends Component {
                 <div className={styles.cards__profile}>
                     <div className={styles.overview__profile_header}>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXSTblEVkkdJh15jlAbC3FpvuzCKb1o-pQQA&usqp=CAU" width="150" height="150" />
-                        <h3>Abishek PSS</h3>
+                        <h3>Tommy Jones</h3>
                     </div>
                     <div className={styles.profile__form}>
                         <table id={styles.profile}>
@@ -24,9 +24,9 @@ class UserProfile extends Component {
                                 <th>Last Name</th>
                             </tr>
                             <tr>
-                                <td>1001842007</td>
-                                <td>Abishek</td>
-                                <td>PS</td>
+                                <td>100184</td>
+                                <td>Tommy</td>
+                                <td>Jones</td>
                             </tr>
                             <tr>
                                 <th>Birth Place</th>
