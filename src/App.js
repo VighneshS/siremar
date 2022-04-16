@@ -37,8 +37,8 @@ export const endPoints = {
 }
 
 export const api = axios.create({
-    // baseURL: `http://localhost/`
-    baseURL: `https://siremar.api.vxs8596.uta.cloud/`
+    baseURL: `http://localhost/`
+    // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
 })
 
 function App() {

@@ -53,7 +53,6 @@ const utils = {
         let isErrors = Object.values(errors).some((val) => {
             return val.length < 1;
         })
-        console.log(isNulls, isEmpty, isErrors);
         valid = !(isNulls || isEmpty) && isErrors;
         return valid;
     },

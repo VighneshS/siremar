@@ -56,10 +56,6 @@ class UserDashboard extends Component {
         }
     }
 
-    handleBooking = (type) => {
-        console.log(type);
-    };
-
     openEditModal = (type) => {
         this.setState({
             bookingType: type,

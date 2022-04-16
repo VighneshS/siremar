@@ -33,8 +33,7 @@ export const addDiscount = async (discount) => {
     bodyFormData.append("flight_rate", discount.flight_rate.replaceAll('%', ''))
     bodyFormData.append("clinic_rate", discount.clinic_rate.replaceAll('%', ''))
     bodyFormData.append("school_rate", discount.school_rate.replaceAll('%', ''))
-    console.log(discount);
-    if (discount.id !== '') {
+    if (discount.id) {
         bodyFormData.append("id", discount.id)
         bodyFormData.append("is_active", discount.is_active)
     }

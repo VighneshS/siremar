@@ -68,7 +68,6 @@ export default class AdminDashboard extends Component {
     }
 
     render() {
-        console.log(this.data);
         return (
             <div>
                 <NavBar />

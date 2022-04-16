@@ -48,7 +48,6 @@ export default class ApproveRegistrations extends Component {
     approveAndActivateUser = (e, user) => {
         approveUser(user.id).then(response => {
             if (response.data) {
-                console.log(response.data);
                 this.state.users.forEach(u => {
                     if (u.id === user.id) {
                         u["Active"] = true;

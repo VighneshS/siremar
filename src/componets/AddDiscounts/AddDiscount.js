@@ -34,18 +34,15 @@ class AddDiscount extends Component {
         if (props.data) {
             this.state.discount = props.data
         } else {
-            this.setState({
-                discount: {
-                    discount_code: '',
-                    events_rate: "25%",
-                    ferry_rate: "25%",
-                    flight_rate: "25%",
-                    clinic_rate: "25%",
-                    school_rate: "25%"
-                }
-            })
+            this.state.discount = {
+                discount_code: '',
+                events_rate: "25%",
+                ferry_rate: "25%",
+                flight_rate: "25%",
+                clinic_rate: "25%",
+                school_rate: "25%"
+            }
         }
-        console.log(this.state);
     }
 
     handleChange = (event) => {
@@ -195,7 +192,7 @@ class AddDiscount extends Component {
                             </select>
                         </div>
                         <div>
-                            <button type="submit">{this.state.discount.id === '' ? 'Add ' : 'Update '} Discount</button>
+                            <button type="submit">{!this.state.discount.id ? 'Add ' : 'Update '} Discount</button>
                         </div>
                     </form>
                 </div>
