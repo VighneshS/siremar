@@ -95,3 +95,10 @@ export const approveMoveOut = async (id) => {
     bodyFormData.append("id", id)
     return await api.post(endPoints.approveMoveout, bodyFormData)
 }
+
+export const getCouponRate = async (coupon_code, type) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("coupon_name", coupon_code)
+    bodyFormData.append("business_type", type)
+    return await api.post(endPoints.getcouponrate, bodyFormData)
+}

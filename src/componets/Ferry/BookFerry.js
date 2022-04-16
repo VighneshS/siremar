@@ -3,8 +3,32 @@ import CouponBox from "../CouponBox/CouponBox";
 import styles from "./ferry.module.css";
 
 class BookFerry extends React.Component {
-    state = {};
+    state = {
+        appliedDiscount: 0,
+    };
+
+    handleCouponValue = (val) => {
+        this.setState({
+            appliedDiscount: val,
+        });
+    };
+
     render() {
+        const status = () => {
+            if (this.state.appliedDiscount) {
+                let discountRate = (this.state.appliedDiscount/100) * 100
+                return (
+                    <div className={styles.totals_item}>
+                        <label>Discount ({this.state.appliedDiscount}%)</label>
+                        <div className={styles.totals_value} id="cart-tax">
+                            -{discountRate}.00
+                        </div>
+                    </div>
+                );
+            } else {
+                return "";
+            }
+        };
         return (
             <div className={styles.container}>
                 <h2>SIREMAR Ferry Booking</h2>
@@ -58,7 +82,7 @@ class BookFerry extends React.Component {
                         </select>
                     </div>
                     <div className={styles.col_100}>
-                        <CouponBox />
+                        <CouponBox discountApplied={this.handleCouponValue} type={"ferrys"}/>
                     </div>  
                 </div>
                 <div className={styles.col_25}>
@@ -66,25 +90,20 @@ class BookFerry extends React.Component {
                         <div className={styles.totals_item}>
                             <label>Subtotal</label>
                             <div className={styles.totals_value} id="cart-subtotal">
-                                100.00
+                                $100.00
                             </div>
                         </div>
-                        <div className={styles.totals_item}>
-                            <label>Discount (25%)</label>
-                            <div className={styles.totals_value} id="cart-tax">
-                                -25.00
-                            </div>
-                        </div>
+                        {status()}
                         <div className={styles.totals_item}>
                             <label>Tax (2%)</label>
                             <div className={styles.totals_value} id="cart-shipping">
-                                2
+                                $2
                             </div>
                         </div>
                         <div className={styles.totals_item}>
                             <label>Grand Total</label>
                             <div className={styles.totals_value} id="cart-total">
-                                $77.00
+                                ${100 - (this.state.appliedDiscount/100) * 100 + 2}
                             </div>
                         </div>
                     </div>

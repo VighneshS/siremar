@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+import { getCouponRate } from "../utils/Services";
 
 import styles from "./coupon.module.css";
 
 class CouponBox extends Component {
+    constructor(props){
+        super(props)
+    }
     state = {};
     handleCoupon = () => {
-        this.props.discountApplied(true)
+        getCouponRate("SIREMAR101", this.props.type).then(response => {
+            this.props.discountApplied(response.data.message)
+        });
     }
     render() {
         return (
