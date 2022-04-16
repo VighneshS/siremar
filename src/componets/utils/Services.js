@@ -11,10 +11,9 @@ export const login = async (user) => {
 
 export const register = async (user) => {
     let bodyFormData = new FormData();
-    bodyFormData.append("user_id", user.user_id)
-    bodyFormData.append("password", user.password)
+    bodyFormData.append("user_id", utils.getUniqueUserId())
     bodyFormData.append("user_role", user.user_role)
-    bodyFormData.append("email_id", user.email_id)
+    bodyFormData.append("email_id", user.emailid)
     bodyFormData.append("fname", user.fname)
     bodyFormData.append("lname", user.lname)
     bodyFormData.append("birth_place", user.birth_place)
@@ -28,8 +27,17 @@ export const register = async (user) => {
 
 export const addDiscount = async (discount) => {
     let bodyFormData = new FormData();
-    bodyFormData.append("type", discount.type)
-    bodyFormData.append("percent", discount.percent)
+    bodyFormData.append("discount_code", discount.discount_code)
+    bodyFormData.append("events_rate", discount.events_rate.replaceAll('%', ''))
+    bodyFormData.append("ferry_rate", discount.ferry_rate.replaceAll('%', ''))
+    bodyFormData.append("flight_rate", discount.flight_rate.replaceAll('%', ''))
+    bodyFormData.append("clinic_rate", discount.clinic_rate.replaceAll('%', ''))
+    bodyFormData.append("school_rate", discount.school_rate.replaceAll('%', ''))
+    console.log(discount);
+    if (discount.id !== '') {
+        bodyFormData.append("id", discount.id)
+        bodyFormData.append("is_active", discount.is_active)
+    }
     return await api.post(endPoints.addDiscount, bodyFormData)
 }
 

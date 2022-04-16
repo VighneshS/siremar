@@ -17,6 +17,7 @@ import NavBar from "../../componets/NavBar/NavBar";
 import {getDiscounts, getMoveOuts, getUsers} from "../../componets/utils/Services";
 import utils from "../../componets/utils/Utilities";
 import MoveOuts from "../../componets/MoveOuts/MoveOuts";
+import Discounts from "../../componets/Discounts/Discounts";
 
 class InspecDashboard extends Component {
     state = {
@@ -103,12 +104,12 @@ class InspecDashboard extends Component {
                 return {
                     "id": d["id"],
                     "Coupon Code": d["name"],
-                    "Discounts on Events": d["events_rate"],
-                    "Discounts on Schools": d["ferrys_rate"],
-                    "Discounts on Ferrys": d["flights_rate"],
-                    "Discounts on Clicns": d["clinics_rate"],
-                    "Discounts on Flights": d["schools_rate"],
-                    "isActive": d["is_active"]
+                    "Discounts on Events": d["events_rate"] + '%',
+                    "Discounts on Schools": d["ferrys_rate"] + '%',
+                    "Discounts on Ferries": d["flights_rate"] + '%',
+                    "Discounts on Clinics": d["clinics_rate"] + '%',
+                    "Discounts on Flights": d["schools_rate"] + '%',
+                    "Active": d["is_active"]
                 }
             })
             this.setState({tableData: data})
@@ -259,7 +260,7 @@ class InspecDashboard extends Component {
                             }`}
                         >
                             {this.state.tableData ? (
-                                <ApproveRegistrations data={this.state.tableData}/>) : utils.getProgressCircle()}
+                                <Discounts data={this.state.tableData}/>) : utils.getProgressCircle()}
                         </div>
                     </div>
                 </div>

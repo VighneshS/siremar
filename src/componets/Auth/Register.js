@@ -21,7 +21,7 @@ class Register extends Component {
                 emailid: "",
                 fname: "",
                 lname: "",
-                birth_place: "",
+                birth_place: "SIREMAR",
                 dob: "",
                 address: "",
                 apt_no: "",
@@ -29,6 +29,7 @@ class Register extends Component {
                 proof_url: "",
                 pwd: "",
                 rpwd: "",
+                user_role: utils.getRole(window.location.pathname)
             },
             redirectURI: "/",
             redirect: false,
@@ -142,6 +143,7 @@ class Register extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log(this.state.user);
         if (utils.validateForm(this.state.errors, this.state.user)) {
             this.registerUser();
             this.setState({isValidForm: true});
@@ -335,7 +337,7 @@ class Register extends Component {
                             type="file"
                             id="proof_url"
                             onChange={this.handleChange}
-                            name="filename"
+                            name="proof_url"
                             required
                         />
                     </div>
