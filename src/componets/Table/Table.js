@@ -11,7 +11,11 @@ export default class Table extends React.Component {
     }
 
     getKeys = function () {
-        return Object.keys(this.props.data.data[0]);
+        if (this.checkIfEmpty(this.props.data.data)) {
+            return Object.keys(this.props.data.data[0]);
+        } else {
+            return [];
+        }
     }
 
     getHeader = function () {
@@ -22,30 +26,38 @@ export default class Table extends React.Component {
     }
 
     getRowsData = function () {
-        const items = this.props.data.data;
-        const metadata = this.props.data.metadata;
-        const keys = this.getKeys();
-        return items.map((row, index) => {
-            return <tr key={index}>
-                <RenderCheckbox hasCheckbox={this.props.hasCheckbox} selectedUsers={this.props.selectedUsers}
-                                isSelectAll={false}
-                                id={row.id}/>
-                <RenderRow key={index} data={row} keys={keys} metadata={metadata}/>
-                <RenderActionButtons actions={this.props.actions} data={row}/>
-            </tr>
-        })
+        if (this.checkIfEmpty(this.props.data.data)) {
+            const items = this.props.data.data;
+            const metadata = this.props.data.metadata;
+            const keys = this.getKeys();
+            return items.map((row, index) => {
+                return <tr key={index}>
+                    <RenderCheckbox hasCheckbox={this.props.hasCheckbox} selectedUsers={this.props.selectedUsers}
+                                    isSelectAll={false}
+                                    id={row.id}/>
+                    <RenderRow key={index} data={row} keys={keys} metadata={metadata}/>
+                    <RenderActionButtons actions={this.props.actions} data={row}/>
+                </tr>
+            })
+        } else {
+            return null;
+        }
+    }
+
+    checkIfEmpty(data) {
+        return data && data.length > 0;
     }
 
     render() {
         return (<div>
             <table>
                 <thead>
-                <tr>
+                {this.checkIfEmpty(this.props.data.data) ? (<tr>
                     <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack}
-                                    isSelectAll={false}/>
-                    {this.getHeader()}
+                    isSelectAll={false}/>
+                {this.getHeader()}
                     <RenderActionHeader actions={this.props.actions}/>
-                </tr>
+                    </tr>) : "No data"}
                 </thead>
                 <tbody>
                 {this.getRowsData()}

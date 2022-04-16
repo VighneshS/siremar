@@ -1,4 +1,5 @@
 import {api, endPoints} from "../../App";
+import utils from "./Utilities";
 
 export const login = async (user) => {
     let bodyFormData = new FormData();
@@ -25,15 +26,58 @@ export const register = async (user) => {
     return await api.post(endPoints.register, bodyFormData)
 }
 
-export const approveUser = async (user) => {
-    let bodyFormData = new FormData();
-    bodyFormData.append("user_id", user.user_id)
-    return await api.post(endPoints.approveuser, bodyFormData)
-}
-
 export const addDiscount = async (discount) => {
     let bodyFormData = new FormData();
     bodyFormData.append("type", discount.type)
     bodyFormData.append("percent", discount.percent)
     return await api.post(endPoints.addDiscount, bodyFormData)
+}
+
+export const getFlights = async () => {
+    return await api.get(endPoints.getflights)
+}
+
+export const getBookedTickets = async (transportType) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("user_id", utils.getCurrentUser())
+    bodyFormData.append("transport_type", transportType)
+    return await api.post(endPoints.gettickets, bodyFormData)
+}
+
+export const getUserAppointments = async () => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("user_id", utils.getCurrentUser())
+    return await api.post(endPoints.get_user_appointments, bodyFormData)
+}
+
+export const getMoveOuts = async (user_id) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("user_id", user_id)
+    return await api.post(endPoints.getmoveOuts, bodyFormData)
+}
+
+export const getDiscounts = async () => {
+    return await api.get(endPoints.displayDiscounts)
+}
+
+export const getUsers = async () => {
+    return await api.get(endPoints.getUsers)
+}
+
+export const bookTickets = async (booking) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("user_id", utils.getCurrentUser())
+    bodyFormData.append("transport_id", booking.transport_id)
+    bodyFormData.append("transport_type", booking.transport_type)
+    bodyFormData.append("source", booking.source)
+    bodyFormData.append("destination", booking.destination)
+    bodyFormData.append("date", booking.date)
+    bodyFormData.append("time", booking.time)
+    return await api.post(endPoints.booktickets, bodyFormData)
+}
+
+export const approveUser = async (user_id) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("user_id", user_id)
+    return await api.post(endPoints.approveuser, bodyFormData)
 }

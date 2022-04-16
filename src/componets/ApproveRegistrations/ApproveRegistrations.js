@@ -4,14 +4,15 @@ import Modal from "../Modal/Modal";
 import data from "../../data/users.json"
 import classes from "./ApproveRegistrations.module.css"
 import utils from "../utils/Utilities";
+import {approveUser} from "../utils/Services";
 
 export default class ApproveRegistrations extends Component {
-    
+
     constructor(props) {
         super(props);
-        let users = props.data.slice(0, 10);
+        let users = props.data ? props.data : [];
         this.state = {
-            users: users,
+            users: props.data,
             tableData: {
                 data: users,
                 metadata: {
@@ -45,13 +46,18 @@ export default class ApproveRegistrations extends Component {
     }
 
     approveAndActivateUser = (e, user) => {
-        this.state.users.forEach(u => {
-            if (u.id === user.id) {
-                u["Active"] = true;
+        approveUser(user.id).then(response => {
+            if (response.data) {
+                console.log(response.data);
+                this.state.users.forEach(u => {
+                    if (u.id === user.id) {
+                        u["Active"] = true;
+                    }
+                });
+                this.closeEditModal();
+                this.openEditModal(user);
             }
-        });
-        this.closeEditModal();
-        this.openEditModal(user);
+        })
     }
 
     render() {
