@@ -22,6 +22,18 @@ const utils = {
             return "I101";
         }
     },
+    getUserRoleBasedOnCode: function (roleCode) {
+        switch (roleCode) {
+            case "U101":
+                return "Resident";
+            case "A101":
+                return "Admin";
+            case "I101":
+                return "Inspector";
+            default:
+                return "Unknown";
+        }
+    },
     getProgressCircle() {
         return (<div className="lds-ring">
             <div></div>

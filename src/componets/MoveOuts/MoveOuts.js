@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import Table from "../Table/Table";
 import Modal from "../Modal/Modal";
-import data from "../../data/users.json"
-import classes from "./ApproveRegistrations.module.css"
+import classes from "./MoveOuts.module.css"
 import utils from "../utils/Utilities";
-import {approveUser} from "../utils/Services";
+import {approveMoveOut, approveUser} from "../utils/Services";
 
-export default class ApproveRegistrations extends Component {
+export default class MoveOuts extends Component {
 
     constructor(props) {
         super(props);
@@ -16,7 +15,7 @@ export default class ApproveRegistrations extends Component {
             tableData: {
                 data: users,
                 metadata: {
-                    styles: [{column: "Active", styleFunction: RenderBadge}, {
+                    styles: [{column: "Approved", styleFunction: RenderBadge}, {
                         column: "Proof",
                         styleFunction: RenderURL
                     }]
@@ -45,13 +44,14 @@ export default class ApproveRegistrations extends Component {
         this.openEditModal(row)
     }
 
-    approveAndActivateUser = (e, user) => {
-        approveUser(user.id).then(response => {
+    approveMoveOut = (e, user) => {
+        console.log(user);
+        approveMoveOut(user.id).then(response => {
             if (response.data) {
                 console.log(response.data);
                 this.state.users.forEach(u => {
                     if (u.id === user.id) {
-                        u["Active"] = true;
+                        u["Approved"] = 'Yes';
                     }
                 });
                 this.closeEditModal();
@@ -62,6 +62,7 @@ export default class ApproveRegistrations extends Component {
 
     render() {
         return (<div>
+            {/* <h1>Approve Registrations</h1> */}
             <Table data={this.state.tableData} actions={this.actions}/>
             <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                 <h2>View User</h2>
@@ -80,10 +81,6 @@ export default class ApproveRegistrations extends Component {
                         <td>{this.state.editModelData["Birth Place"]}</td>
                     </tr>
                     <tr>
-                        <td>DOB</td>
-                        <td>{this.state.editModelData["Date of Birth"]}</td>
-                    </tr>
-                    <tr>
                         <td>Address</td>
                         <td>{this.state.editModelData["Address"]}</td>
                     </tr>
@@ -92,39 +89,42 @@ export default class ApproveRegistrations extends Component {
                         <td>{this.state.editModelData["Apartment Number"]}</td>
                     </tr>
                     <tr>
-                        <td>Email ID</td>
-                        <td>{this.state.editModelData["Email"]}</td>
+                        <td>Requested Date</td>
+                        <td>{this.state.editModelData["Requested Date"]}</td>
                     </tr>
                     <tr>
-                        <td>Proof</td>
-                        <td>{this.state.editModelData["Proof"]}</td>
+                        <td>Reason</td>
+                        <td>{this.state.editModelData["Reason"]}</td>
                     </tr>
                     <tr>
                         <td>Role</td>
                         <td>{this.state.editModelData["Role"]}</td>
                     </tr>
                     <tr>
-                        <td>Active</td>
-                        <td><RenderBadge value={this.state.editModelData["Active"]}/></td>
+                        <td>Approved</td>
+                        <td><RenderBadge value={this.state.editModelData["Approved"]}/></td>
                     </tr>
                     </tbody>
                 </table>
                 <button
-                    disabled={this.state.editModelData["Active"]}
-                    onClick={(e) => this.approveAndActivateUser(e, this.state.editModelData)}>
-                    {!this.state.editModelData["Active"] ? "Approve" : "Approved"}
+                    disabled={getIsApproved(this.state.editModelData["Approved"])}
+                    onClick={(e) => this.approveMoveOut(e, this.state.editModelData)}>
+                    {!getIsApproved(this.state.editModelData["Approved"]) ? "Approve" : "Approved"}
                 </button>
             </Modal>
         </div>);
     }
 }
+const getIsApproved = (data) => {
+    return data === 'Yes';
+}
 
 const RenderBadge = (props: { value: * }) => {
-    if (props.value) {
-        return <td key={utils.getRandomUniqueId()}><span className={`${classes.badge} ${classes.green}`}>Active</span>
+    if (getIsApproved(props.value)) {
+        return <td className={`${classes.no_border}`} key={utils.getRandomUniqueId()}><span className={`${classes.badge} ${classes.green}`}>Yes</span>
         </td>;
     } else {
-        return <td key={utils.getRandomUniqueId()}><span className={`${classes.badge} ${classes.red}`}>In Active</span>
+        return <td className={`${classes.no_border}`} key={utils.getRandomUniqueId()}><span className={`${classes.badge} ${classes.red}`}>No</span>
         </td>;
     }
 }

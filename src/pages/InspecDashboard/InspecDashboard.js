@@ -16,6 +16,7 @@ import AddDiscount from "../../componets/AddDiscounts/AddDiscount";
 import NavBar from "../../componets/NavBar/NavBar";
 import {getDiscounts, getMoveOuts, getUsers} from "../../componets/utils/Services";
 import utils from "../../componets/utils/Utilities";
+import MoveOuts from "../../componets/MoveOuts/MoveOuts";
 
 class InspecDashboard extends Component {
     state = {
@@ -67,7 +68,7 @@ class InspecDashboard extends Component {
                     "Apartment Number": d["apt_no"],
                     "Requested Date": d["created_on"],
                     "Reason": d["comments"],
-                    "Role": d["user_role"],
+                    "Role": utils.getUserRoleBasedOnCode(d["user_role"]),
                     "Approved": (d["is_approved"]==='1' ? "Yes" : "No")
                 }
             })
@@ -164,7 +165,7 @@ class InspecDashboard extends Component {
                             }`}
                         >
                             {this.state.tableData ? (
-                                <ApproveRegistrations data={this.state.tableData}/>) : utils.getProgressCircle()}
+                                <MoveOuts data={this.state.tableData}/>) : utils.getProgressCircle()}
                         </div>
                     </div>
                     <hr/>

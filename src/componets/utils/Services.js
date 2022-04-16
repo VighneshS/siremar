@@ -81,3 +81,9 @@ export const approveUser = async (user_id) => {
     bodyFormData.append("user_id", user_id)
     return await api.post(endPoints.approveuser, bodyFormData)
 }
+
+export const approveMoveOut = async (id) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("id", id)
+    return await api.post(endPoints.approveMoveout, bodyFormData)
+}
