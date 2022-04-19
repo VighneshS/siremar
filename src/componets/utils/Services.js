@@ -101,3 +101,9 @@ export const getCouponRate = async (coupon_code, type) => {
     bodyFormData.append("business_type", type)
     return await api.post(endPoints.getcouponrate, bodyFormData)
 }
+
+export const getUserProfile = async () => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("user_id", utils.getCurrentUser())
+    return await api.post(endPoints.getprofile, bodyFormData)
+}

@@ -91,3 +91,7 @@ span.psw {
 .error {
   color: #f44336;
 }
+
+input {
+  text-transform: uppercase;
+}
