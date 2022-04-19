@@ -43,7 +43,7 @@ export const api = axios.create({
 
 function App() {
     return (
-        <div className="App">
+        <Router>
             {/* <NavBar/> */}
             <Chat/>
             <Routes>
@@ -62,7 +62,7 @@ function App() {
                 <Route path='/inspector/dashboard' element={<InspecDashboard/>}/>
                 {/* <Route path='/contact' element={<ContactUs />} /> */}
             </Routes>
-        </div>
+        </Router>
     );
 }
 
