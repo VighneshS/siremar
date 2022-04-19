@@ -168,7 +168,7 @@ class BookFlights extends Component {
                           noValidate>
                         <div className={styles.col_75}>
                             <div className={styles.col_50}>
-                                <label for="flight-name">
+                                <label htmlFor="flight-name">
                                     <b>Flight Name</b>
                                 </label>
                                 {this.renderFlightOptions()}

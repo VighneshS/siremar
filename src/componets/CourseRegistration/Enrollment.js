@@ -18,14 +18,14 @@ class CourseRegister extends Component {
                 <h2>SIREMAR University Course Enrollment</h2>
                 <div className={styles.col_75}>
                     <div className={styles.col_50}>
-                        <label for="flight-name"><b>Campus</b></label>
+                        <label htmlFor="flight-name"><b>Campus</b></label>
                         <select>
                             <option value="SW Campus">SW Campus</option>
                             <option value="NE Campus">NE Campus</option>
                         </select>
                     </div>
                     <div className={styles.col_50}>
-                        <label for="destination"><b>Courses</b></label>
+                        <label htmlFor="destination"><b>Courses</b></label>
                         <select onChange={this.handleSelected_course}>
                             <option value="CSE 5301">CSE 5301</option>
                             <option value="CSE 5311">CSE 5311</option>
@@ -34,7 +34,7 @@ class CourseRegister extends Component {
                         </select>
                     </div>
                     <div className={styles.col_25}>
-                        <label for="dep-time"><b>Section</b></label>
+                        <label htmlFor="dep-time"><b>Section</b></label>
                         <select>
                             <option value="#1">#1</option>
                             <option value="#2">#2</option>
@@ -42,7 +42,7 @@ class CourseRegister extends Component {
                         </select>
                     </div>
                     {/* <div className={styles.col_25}>
-                        <label for="dep-time"><b>Departure Time</b></label>
+                        <label htmlFor="dep-time"><b>Departure Time</b></label>
                         <select>
                             <option value="09:00">09:00</option>
                             <option value="11:00">11:00</option>

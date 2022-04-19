@@ -9,11 +9,11 @@ class RegisterOut extends Component {
             <div className={styles.container}>
                 <h2>Register Move Out</h2>
                 <div className={styles.col_50}>
-                    <label for="dob"><b>Date of Move Out</b></label>
+                    <label htmlFor="dob"><b>Date of Move Out</b></label>
                     <input type="date" name="dot" />
                 </div>
                 <div className={styles.col_100}>
-                    <label for="reason"><b>Reason</b></label>
+                    <label htmlFor="reason"><b>Reason</b></label>
                     <textarea name="reson" rows="4" cols="50" />
                 </div>
                 <div className={styles.col_50}>

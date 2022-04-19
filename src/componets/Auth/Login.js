@@ -96,14 +96,14 @@ class Login extends Component {
                     <div className={styles.col_100}>
                         {showError()}
                     </div>
-                    <label for="uname">
+                    <label htmlFor="uname">
                         <b>User ID</b>
                     </label>
                     <input autoComplete={"off"} onChange={this.handleUserIDChange} type="number"
                            value={this.state.user_id} placeholder="Enter User ID"
                            name="uname" required/>
 
-                    <label for="psw">
+                    <label htmlFor="psw">
                         <b>Password</b>
                     </label>
                     <input type="password" onChange={this.handlePasswordChange} value={this.state.password}

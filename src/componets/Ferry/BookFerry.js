@@ -34,7 +34,7 @@ class BookFerry extends React.Component {
                 <h2>SIREMAR Ferry Booking</h2>
                 <div className={styles.col_75}>
                     <div className={styles.col_50}>
-                        <label for="bplace">
+                        <label htmlFor="bplace">
                             <b>Ferry Name</b>
                         </label>
                         <select>
@@ -43,7 +43,7 @@ class BookFerry extends React.Component {
                         </select>
                     </div>
                     <div className={styles.col_25}>
-                        <label for="bplace">
+                        <label htmlFor="bplace">
                             <b>From</b>
                         </label>
                         <select>
@@ -54,7 +54,7 @@ class BookFerry extends React.Component {
                         </select>
                     </div>
                     <div className={styles.col_25}>
-                        <label for="bplace">
+                        <label htmlFor="bplace">
                             <b>To</b>
                         </label>
                         <select>
@@ -65,13 +65,13 @@ class BookFerry extends React.Component {
                         </select>
                     </div>
                     <div className={styles.col_50}>
-                        <label for="dob">
+                        <label htmlFor="dob">
                             <b>Date of Travel</b>
                         </label>
                         <input type="date" name="dot" />
                     </div>
                     <div className={styles.col_25}>
-                        <label for="bplace">
+                        <label htmlFor="bplace">
                             <b>Departure Time</b>
                         </label>
                         <select>

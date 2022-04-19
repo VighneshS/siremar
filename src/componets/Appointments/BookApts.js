@@ -20,7 +20,7 @@ class BookApts extends React.Component {
                         </select>
                     </div>
                     <div className={styles.col_50}>
-                        <label for="destination">
+                        <label htmlFor="destination">
                             <b>Specialization</b>
                         </label>
                         <select>
@@ -31,13 +31,13 @@ class BookApts extends React.Component {
                         </select>
                     </div>
                     <div className={styles.col_50}>
-                        <label for="dob">
+                        <label htmlFor="dob">
                             <b>Date</b>
                         </label>
                         <input type="date" name="dot" />
                     </div>
                     <div className={styles.col_25}>
-                        <label for="dep-time">
+                        <label htmlFor="dep-time">
                             <b>Time</b>
                         </label>
                         <select>
@@ -51,7 +51,7 @@ class BookApts extends React.Component {
                     </div>
                     <div className={styles.col_100}>
                         <CouponBox />
-                    </div> 
+                    </div>
                 </div>
                 <div className={styles.col_25}>
                     <div className={styles.totals}>

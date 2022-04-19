@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faTimes, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {endPoints} from "../../App";
+import utils from "../utils/Utilities";
 
 class NavBar extends Component {
     constructor(props) {
@@ -69,17 +70,17 @@ class NavBar extends Component {
             if(this.state.isLoggedIn) {
                 return(
                     // ADD/EDIT CLASS TO MODIFY THE WIDTH OF THE SUBMENU
-                    <li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
+                    <li key={utils.getRandomUniqueId()} className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem}>
                         <a href="#"><FontAwesomeIcon icon={faUser} /></a>
                         <ul className={classes.submenu}>
-                            <li className={classes.subItem}>
+                             <li key={utils.getRandomUniqueId()} className={classes.subItem}>
                                 <Link to="/user-profile">
                                     View Profile
                                 </Link>
                             </li>
-                            <li className={classes.subItem}>
+                             <li key={utils.getRandomUniqueId()} className={classes.subItem}>
                                 <Link to="/">
                                     Log Out
                                 </Link>
@@ -89,38 +90,38 @@ class NavBar extends Component {
                 )
             } else {
                 return(
-                [<li className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
+                [ <li key={utils.getRandomUniqueId()} className={`${classes.item} ${classes.hasSubmenu} ${classes.button}`} ref={function (el) {
                     self.items.push(el)
                 }} onClick={this.toggleItem}>
                     <a tabIndex="0">Login</a>
                     <ul className={classes.submenu}>
-                        <li className={classes.subItem}>
+                         <li key={utils.getRandomUniqueId()} className={classes.subItem}>
                             <Link to="/user/login">
                                 Resident
                             </Link>
                         </li>
-                        <li className={classes.subItem}>
+                         <li key={utils.getRandomUniqueId()} className={classes.subItem}>
                             <Link to="/inspector/login">
                                 Inspector
                             </Link>
                         </li>
-                        <li className={classes.subItem}>
+                         <li key={utils.getRandomUniqueId()} className={classes.subItem}>
                             <Link to="/admin/login">
                                 Admin
                             </Link>
                         </li>
                     </ul>
                 </li>,
-                <li className={`${classes.item} ${classes.button} ${classes.hasSubmenu}`} ref={function (el) {
+                 <li key={utils.getRandomUniqueId()} className={`${classes.item} ${classes.button} ${classes.hasSubmenu}`} ref={function (el) {
                     self.items.push(el)
                 }} onClick={this.toggleItem}><a>Sign Up</a>
                 <ul className={classes.submenu}>
-                        <li className={classes.subItem}>
+                         <li key={utils.getRandomUniqueId()} className={classes.subItem}>
                             <Link to="/user/register">
                                 Resident
                             </Link>
                         </li>
-                        <li className={classes.subItem}>
+                         <li key={utils.getRandomUniqueId()} className={classes.subItem}>
                             <Link to="/inspector/register">
                                 Inspector
                             </Link>
@@ -136,15 +137,15 @@ class NavBar extends Component {
                 <ul id="menu" className={classes.menu} ref={function (el) {
                     self.menu = el;
                 }}>
-                    <li className={classes.logo}><a href="/"><strong>Siremar</strong></a></li>
-                    <li className={classes.item} ref={function (el) {
+                     <li key={utils.getRandomUniqueId()} className={classes.logo}><a href="/"><strong>Siremar</strong></a></li>
+                     <li key={utils.getRandomUniqueId()} className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem}><Link to="/">Home</Link></li>
-                    <li className={classes.item} ref={function (el) {
+                     <li key={utils.getRandomUniqueId()} className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem}><a href={endPoints.blog}>Blog</a></li>
                     {isLogged()}
-                    <li className={classes.toggle} onClick={this.toggleMenu} ref={function (el) {
+                     <li key={utils.getRandomUniqueId()} className={classes.toggle} onClick={this.toggleMenu} ref={function (el) {
                         self.toggle = el;
                     }}><a href="#">
                         {this.state.menuToggle ? <FontAwesomeIcon icon={faBars} size={"1x"}/> :

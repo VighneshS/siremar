@@ -19,7 +19,7 @@ class ContactUs extends Component {
                 <h1>&bull; CONTACT US &bull;</h1>
                 <form>
                     <div className={styles.name}>
-                        <label for="name"></label>
+                        <label htmlFor="name"></label>
                         <input
                             type="text"
                             placeholder="My name is"
@@ -29,7 +29,7 @@ class ContactUs extends Component {
                         />
                     </div>
                     <div className={styles.email}>
-                        <label for="email"></label>
+                        <label htmlFor="email"></label>
                         <input
                             type="email"
                             placeholder="My e-mail is"
@@ -44,7 +44,7 @@ class ContactUs extends Component {
                         />
                     </div>
                     <div className={styles.telephone}>
-                        <label for="name"></label>
+                        <label htmlFor="name"></label>
                         <input
                             type="text"
                             placeholder="My number is"
@@ -54,7 +54,7 @@ class ContactUs extends Component {
                         />
                     </div>
                     <div className={styles.subject}>
-                        <label for="subject"></label>
+                        <label htmlFor="subject"></label>
                         <input
                             type="text"
                             placeholder="Subject Line"
@@ -69,7 +69,7 @@ class ContactUs extends Component {
                         />
                     </div>
                     <div className={styles.message}>
-                        <label for="message"></label>
+                        <label htmlFor="message"></label>
                         <textarea
                             name="message"
                             placeholder="I'd like to chat about"

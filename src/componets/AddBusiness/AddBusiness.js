@@ -23,11 +23,11 @@ class AddBusiness extends React.Component {
                         <input type="text" placeholder="" name="name" required />
                     </div>
                     <div className={styles.col_50}>
-                        <label for="lname"><b>Address</b></label>
+                        <label htmlFor="lname"><b>Address</b></label>
                         <input type="text" placeholder="" name="address" required />
                     </div>
                     <div className={styles.col_25}>
-                        <label for="dep-time">
+                        <label htmlFor="dep-time">
                             <b>Discount Rate</b>
                         </label>
                         <select>
