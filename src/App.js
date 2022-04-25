@@ -28,6 +28,8 @@ export const endPoints = {
     bookflights: `bookflights.php`,
     booktickets: `booktickets.php`,
     displayDiscounts: `display_discounts.php`,
+    displayAllDiscount: `inspector/discounts-all`,
+    deleteDiscount: `inspector/deletediscount`,
     getUsers: `get_users.php`,
     getBookedevents: `get_bookedevents.php`,
     getmoveOuts: `getmove_outs.php`,

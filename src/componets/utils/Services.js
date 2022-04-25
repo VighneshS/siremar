@@ -67,6 +67,16 @@ export const getDiscounts = async () => {
     return await api.get(endPoints.displayDiscounts)
 }
 
+export const getAllDiscounts = async () => {
+    return await apiLaravel.get(endPoints.displayAllDiscount)
+}
+
+export const deleteDiscount = async (id) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("dicount_id", id)
+    return await apiLaravel.post(endPoints.deleteDiscount, bodyFormData)
+}
+
 export const getUsers = async () => {
     return await api.get(endPoints.getUsers)
 }
