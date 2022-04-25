@@ -80,7 +80,7 @@ class UserDashboard extends Component {
     }
 
     loadMoveOuts() {
-        getMoveOuts(utils.getCurrentUser()).then(response => {
+        getMoveOuts(utils.getCurrentUserId()).then(response => {
             this.setState({tableData: response.data.message})
         });
     }

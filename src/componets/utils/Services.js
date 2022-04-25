@@ -1,4 +1,4 @@
-import {api, endPoints} from "../../App";
+import {api, apiLaravel, endPoints} from "../../App";
 import utils from "./Utilities";
 
 export const login = async (user) => {
@@ -6,7 +6,7 @@ export const login = async (user) => {
     bodyFormData.append("user_id", user.user_id)
     bodyFormData.append("password", user.password)
     bodyFormData.append("user_role", user.user_role)
-    return await api.post(endPoints.login, bodyFormData)
+    return await apiLaravel.post(endPoints.login, bodyFormData)
 }
 
 export const register = async (user) => {
@@ -46,14 +46,14 @@ export const getFlights = async () => {
 
 export const getBookedTickets = async (transportType) => {
     let bodyFormData = new FormData();
-    bodyFormData.append("user_id", utils.getCurrentUser())
+    bodyFormData.append("user_id", utils.getCurrentUserId())
     bodyFormData.append("transport_type", transportType)
     return await api.post(endPoints.gettickets, bodyFormData)
 }
 
 export const getUserAppointments = async () => {
     let bodyFormData = new FormData();
-    bodyFormData.append("user_id", utils.getCurrentUser())
+    bodyFormData.append("user_id", utils.getCurrentUserId())
     return await api.post(endPoints.get_user_appointments, bodyFormData)
 }
 
@@ -73,7 +73,7 @@ export const getUsers = async () => {
 
 export const bookTickets = async (booking) => {
     let bodyFormData = new FormData();
-    bodyFormData.append("user_id", utils.getCurrentUser())
+    bodyFormData.append("user_id", utils.getCurrentUserId())
     bodyFormData.append("transport_id", booking.transport_id)
     bodyFormData.append("transport_type", booking.transport_type)
     bodyFormData.append("source", booking.source)
@@ -100,4 +100,10 @@ export const getCouponRate = async (coupon_code, type) => {
     bodyFormData.append("coupon_name", coupon_code)
     bodyFormData.append("business_type", type)
     return await api.post(endPoints.getcouponrate, bodyFormData)
+}
+
+export const getUserProfile = async () => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("user_id", utils.getCurrentUserId())
+    return await api.post(endPoints.getprofile, bodyFormData)
 }

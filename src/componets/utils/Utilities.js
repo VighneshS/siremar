@@ -1,7 +1,15 @@
 const utils = {
     CURRENT_USER: 'CURRENT_USER',
+    CURRENT_USER_NAME: 'CURRENT_USER_NAME',
+    CURRENT_UNKNOWN_USER: 'CURRENT_UNKNOWN_USER',
+    CURRENT_UNKNOWN_USER_NAME: 'CURRENT_UNKNOWN_USER_NAME',
     FERRY: 'FERRY',
     FLIGHT: 'FLIGHT',
+    USER_ROLES: {
+        RESIDENT: "U101",
+        INSPECTOR: "I101",
+        ADMIN: "A101"
+    },
     getRandomUniqueId: function () {
         return Math.random().toString(36).substring(5);
     },
@@ -18,8 +26,10 @@ const utils = {
             return "U101";
         } else if (path.includes("admin")) {
             return "A101";
-        } else {
+        } else if (path.includes("inspector")){
             return "I101";
+        } else {
+            return "U101";
         }
     },
     getUserRoleBasedOnCode: function (roleCode) {
@@ -56,8 +66,11 @@ const utils = {
         valid = !(isNulls || isEmpty) && isErrors;
         return valid;
     },
-    getCurrentUser() {
+    getCurrentUserId() {
         return localStorage.getItem(utils.CURRENT_USER)
+    },
+    getCurrentUserName() {
+        return localStorage.getItem(utils.CURRENT_USER_NAME)
     }
 };
 

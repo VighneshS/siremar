@@ -19,7 +19,7 @@ export const endPoints = {
     getcouponrate: `getcouponrate.php`,
     getflights: `getflights.php`,
     getprofile: `getprofile.php`,
-    login: `login.php`,
+    login: `user/signin`,
     register: `createuser.php`,
     addDiscount: `add_discount.php`,
     addEvents: `addevents.php`,
@@ -36,9 +36,19 @@ export const endPoints = {
     blog: `https://siremar.blog.vxs8596.uta.cloud/`
 }
 
+export const WS_HOST = "ws://localhost:9000"
+export const NEW_CHAT_MESSAGE_EVENT = "chat message"
+export const TYPING_CHAT_MESSAGE_EVENT = "typing"
+export const USERS_EVENT = "users"
+
 export const api = axios.create({
-    // baseURL: `http://localhost/`
-    baseURL: `https://siremar.api.vxs8596.uta.cloud/`
+    baseURL: `http://localhost/`
+    // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
+})
+
+export const apiLaravel = axios.create({
+    baseURL: `http://localhost:8000/api/`
+    // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
 })
 
 function App() {

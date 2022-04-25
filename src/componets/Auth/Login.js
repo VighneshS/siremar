@@ -40,13 +40,14 @@ class Login extends Component {
             password: this.state.password,
             user_role: utils.getRole(this.state.path)
         }).then((response) => {
-            if (response.data.user_id) {
+            if (response.data.status === 200) {
                 localStorage.setItem('isLoggedin', true)
-                localStorage.setItem(utils.CURRENT_USER, response.data.user_id)
+                localStorage.setItem(utils.CURRENT_USER, response.data.id)
+                console.log(response.data);
+                localStorage.setItem(utils.CURRENT_USER_NAME, response.data.lname + " " + response.data.fname)
                 this.routeLogin()
-
             } else {
-                this.setState({err: {message: response.data}});
+                this.setState({err: {message: response.data.message}});
             }
         });
     };
