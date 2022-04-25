@@ -3,7 +3,7 @@ import Table from "../Table/Table";
 import Modal from "../Modal/Modal";
 import classes from "./Discounts.module.css"
 import utils from "../utils/Utilities";
-import {approveMoveOut, approveUser} from "../utils/Services";
+import {approveMoveOut, approveUser, deleteDiscount} from "../utils/Services";
 import AddDiscount from "../AddDiscounts/AddDiscount";
 
 export default class Discounts extends Component {
@@ -26,8 +26,11 @@ export default class Discounts extends Component {
             editModelData: null
         };
         this.actions = [{
-            "action": "Edit", "callBack": this.handleEditCallBack
-        }]
+            "action": "Edit", "callBack": this.handleEditCallBack,
+        },{
+            "action": "Delete", "callBack": this.handleDeleteDiscount,
+        } 
+    ]
         this.openEditModal = this.openEditModal.bind(this);
         this.closeEditModal = this.closeEditModal.bind(this);
     }
@@ -65,6 +68,10 @@ export default class Discounts extends Component {
 
     handleEditCallBack = (e, row) => {
         this.openEditModal(row)
+    }
+
+    handleDeleteDiscount = (e, row) => {
+        deleteDiscount(row.id)
     }
 
     render() {

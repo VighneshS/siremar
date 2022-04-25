@@ -14,7 +14,7 @@ import DiscountList from "../../componets/ApproveRegistrations/discount_list.jso
 import styles from "./inspecdash.module.css";
 import AddDiscount from "../../componets/AddDiscounts/AddDiscount";
 import NavBar from "../../componets/NavBar/NavBar";
-import {getDiscounts, getMoveOuts, getUsers} from "../../componets/utils/Services";
+import {getAllDiscounts, getMoveOuts, getUsers} from "../../componets/utils/Services";
 import utils from "../../componets/utils/Utilities";
 import MoveOuts from "../../componets/MoveOuts/MoveOuts";
 import Discounts from "../../componets/Discounts/Discounts";
@@ -99,7 +99,7 @@ class InspecDashboard extends Component {
     }
 
     loadDiscounts() {
-        getDiscounts().then(response => {
+        getAllDiscounts().then(response => {
             let data = response.data.message.map(d => {
                 return {
                     "id": d["id"],
