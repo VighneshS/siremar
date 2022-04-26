@@ -12,7 +12,8 @@ class NavBar extends Component {
         super(props);
         this.state = {
             menuToggle: true,
-            isLoggedIn: localStorage.getItem('isLoggedin')
+            isLoggedIn: localStorage.getItem('isLoggedin'),
+            pages: props.pages ? props.pages : []
         }
         this.menu = null;
         this.toggle = null;
@@ -141,6 +142,11 @@ class NavBar extends Component {
                      <li key={utils.getRandomUniqueId()} className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem}><Link to="/">Home</Link></li>
+                    {this.state.pages.map(page => {
+                       return (<li key={utils.getRandomUniqueId()} className={classes.item} ref={function (el) {
+                           self.items.push(el)
+                       }} onClick={this.toggleItem}><Link to={page.redirect}>{page.name}</Link></li>)
+                    })}
                      <li key={utils.getRandomUniqueId()} className={classes.item} ref={function (el) {
                         self.items.push(el)
                     }} onClick={this.toggleItem}><a href={endPoints.blog}>Blog</a></li>

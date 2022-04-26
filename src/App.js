@@ -31,6 +31,7 @@ export const endPoints = {
     displayAllDiscount: `inspector/discounts-all`,
     deleteDiscount: `inspector/deletediscount`,
     getUsers: `get_users.php`,
+    getAllTickets: `admin/tickets`,
     getBookedevents: `get_bookedevents.php`,
     getmoveOuts: `getmove_outs.php`,
     gettickets: `gettickets.php`,
@@ -49,7 +50,6 @@ export const api = axios.create({
     // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
     baseURL: process.env.REACT_APP_SIREMAR_API_PHP
 })
-console.log(process.env.REACT_APP_SIREMAR_API_LARAVEL);
 
 export const apiLaravel = axios.create({
     // baseURL: `http://3.145.17.236/api/`
@@ -70,6 +70,7 @@ function App() {
                 <Route path="/admin/login" element={<Login/>}/>
                 <Route path="/user/register" element={<Register/>}/>
                 <Route path="/inspector/register" element={<Register/>}/>
+                <Route path="/inspector/services" element={<UserDashboard/>}/>
                 <Route path="/approve-registration" element={<ApproveRegistrations/>}/>
                 <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
                 <Route path="/admin/services" element={<InspecDashboard/>}/>

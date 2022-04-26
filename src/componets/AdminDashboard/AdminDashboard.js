@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import classes from "./AdminDashboard.module.css"
 import Card from "../Card/Card";
 import BarChart from "../Chart/BarChart";
+import LineChart from "../Chart/LineChart";
 import utils from "../utils/Utilities";
 import NavBar from "../NavBar/NavBar";
-import {getUsers} from "../utils/Services";
+import {getAllTickets, getUsers} from "../utils/Services";
+import PieChart from "../Chart/PieChart";
 
 
 export default class AdminDashboard extends Component {
@@ -52,20 +54,53 @@ export default class AdminDashboard extends Component {
                     "Created On": d["created_at"]
                 }
             })
-            this.setState({users: data})
-            this.setState({
-                totalNumberOfUsers: this.state.users.length,
-                totalNumberOfUsersByRole: this.groupArray(this.state.users, ["Role"]),
-                chartCreatedOnData: this.groupUsersByCreatedYear(this.state.users),
-                chartDOBData: this.groupUsersByDateOfBirth(this.state.users),
+            this.getAllServicesCount().then(response => {
+                let ferryCount = 0
+                let flightCount = 0
+                if (response[0].value.data) {
+                    flightCount = response[0].value.data.message.length
+                }
+                if (response[1].value.data) {
+                    ferryCount = response[1].value.data.message.length
+                }
+                let counts = [flightCount, ferryCount]
+                console.log(counts);
+                let serviceData = {
+                    labels: [utils.FLIGHT, utils.FERRY],
+                    datasets: [
+                        {
+                            label: "Amount of Services",
+                            data: counts,
+                            backgroundColor: [
+                                "#ffbb11",
+                                "rgba(0,198,168,0.69)"
+                            ]
+                        }
+                    ]
+                };
+                this.setState({users: data})
+                this.setState({
+                    totalNumberOfUsers: this.state.users.length,
+                    totalNumberOfUsersByRole: this.groupArray(this.state.users, ["Role"]),
+                    chartCreatedOnData: this.groupUsersByCreatedYear(this.state.users),
+                    chartDOBData: this.groupUsersByDateOfBirth(this.state.users),
+                    chartServicesData: serviceData,
+                })
+                this.setState({isLoaded: true});
             })
-            this.setState({isLoaded: true});
         });
+    }
+
+    getAllServicesCount = () => {
+        return Promise.allSettled([
+            getAllTickets(utils.FLIGHT).then(),
+            getAllTickets(utils.FERRY).then()
+        ])
     }
 
     groupUsersByCreatedYear = (arr = []) => {
         let groups = arr.reduce((groups, user) => {
-            if(user["Created On"]) {
+            if (user["Created On"]) {
                 const date = user["Created On"].split(' ')[0].split('-')[0];
                 if (!groups[date]) {
                     groups[date] = [];
@@ -98,10 +133,9 @@ export default class AdminDashboard extends Component {
     }
 
 
-
     groupUsersByDateOfBirth = (arr = []) => {
         let groups = arr.reduce((groups, user) => {
-            if(user["DOB"]) {
+            if (user["DOB"]) {
                 const date = user["DOB"].split('-')[0];
                 if (!groups[date]) {
                     groups[date] = [];
@@ -126,7 +160,7 @@ export default class AdminDashboard extends Component {
                     data: groupArrays.map((data) => data.count),
                     backgroundColor: [
                         "#ffbb11",
-                        "#ffbb11"
+                        "#85ec00"
                     ]
                 }
             ]
@@ -141,7 +175,10 @@ export default class AdminDashboard extends Component {
         if (this.state.isLoaded) {
             return (
                 <div>
-                    <NavBar/>
+                    <NavBar pages={[{name: "Dashboard", redirect: "/admin/dashboard"}, {
+                        name: "Services",
+                        redirect: "/admin/services"
+                    }]}/>
                     <div className={classes.fixed_header}>
                         <h1>Admin Dashboard</h1>
                     </div>
@@ -167,7 +204,12 @@ export default class AdminDashboard extends Component {
                         </div>
                         <div className={classes.chart_cards}>
                             <Card title={"Users Grouped by Age"}>
-                                <BarChart chartData={this.state.chartDOBData} title={"Users Enrollments"}/>
+                                <LineChart chartData={this.state.chartDOBData} title={"Users Enrollments"}/>
+                            </Card>
+                        </div>
+                        <div className={classes.chart_cards}>
+                            <Card title={"Users Grouped by Age"}>
+                                <PieChart chartData={this.state.chartServicesData} title={"Users Enrollments"}/>
                             </Card>
                         </div>
                     </div>

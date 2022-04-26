@@ -80,6 +80,11 @@ export const deleteDiscount = async (id) => {
 export const getUsers = async () => {
     return await api.get(endPoints.getUsers)
 }
+export const getAllTickets = async (type) => {
+    let bodyFormData = new FormData();
+    bodyFormData.append("transport_type", type)
+    return await apiLaravel.post(endPoints.getAllTickets, bodyFormData)
+}
 
 export const bookTickets = async (booking) => {
     let bodyFormData = new FormData();

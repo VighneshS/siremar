@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Bar} from "react-chartjs-2";
+import {Line} from "react-chartjs-2";
 import {Chart as ChartJS} from 'chart.js/auto'
 
-class BarChart extends Component {
+class LineChart extends Component {
     constructor(props) {
         super(props);
         this.chartData = props.chartData;
@@ -11,11 +11,11 @@ class BarChart extends Component {
 
     render() {
         return (
-                <Bar data={this.chartData}/>
+                <Line data={this.chartData}/>
         );
     }
 }
 
-BarChart.propTypes = {};
+LineChart.propTypes = {};
 
-export default BarChart;
+export default LineChart;

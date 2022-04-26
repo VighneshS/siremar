@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Table from "../Table/Table";
+import TableComponent from "../Table/TableComponent";
 import Modal from "../Modal/Modal";
 import classes from "./MoveOuts.module.css"
 import utils from "../utils/Utilities";
@@ -62,7 +62,7 @@ export default class MoveOuts extends Component {
     render() {
         return (<div>
             {/* <h1>Approve Registrations</h1> */}
-            <Table data={this.state.tableData} actions={this.actions}/>
+            <TableComponent data={this.state.tableData} actions={this.actions}/>
             <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                 <h2>View User</h2>
                 <table>

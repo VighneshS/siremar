@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Table from "../Table/Table";
+import TableComponent from "../Table/TableComponent";
 import Modal from "../Modal/Modal";
 import classes from "./Discounts.module.css"
 import utils from "../utils/Utilities";
@@ -82,7 +82,7 @@ export default class Discounts extends Component {
     render() {
         return (<div>
             {/* <h1>Approve Registrations</h1> */}
-            <Table data={this.state.tableData} actions={this.actions}/>
+            <TableComponent data={this.state.tableData} actions={this.actions}/>
             {this.getModal()}
         </div>);
     }

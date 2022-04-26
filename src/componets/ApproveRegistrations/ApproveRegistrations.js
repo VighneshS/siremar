@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Table from "../Table/Table";
+import TableComponent from "../Table/TableComponent";
 import Modal from "../Modal/Modal";
 import data from "../../data/users.json"
 import classes from "./ApproveRegistrations.module.css"
@@ -51,7 +51,7 @@ export default class ApproveRegistrations extends Component {
             if (response.data) {
                 this.state.users.forEach(u => {
                     if (u.id === user.id) {
-                        u["Active"] = true;
+                        u["Active"] = !user.Active;
                     }
                 });
                 this.closeEditModal();
@@ -62,7 +62,7 @@ export default class ApproveRegistrations extends Component {
 
     render() {
         return (<div>
-            <Table data={this.state.tableData} actions={this.actions}/>
+            <TableComponent data={this.state.tableData} actions={this.actions}/>
             <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                 <h2>View User</h2>
                 <table>
@@ -110,9 +110,8 @@ export default class ApproveRegistrations extends Component {
                     </tbody>
                 </table>
                 <button
-                    disabled={this.state.editModelData["Active"]}
                     onClick={(e) => this.approveAndActivateUser(e, this.state.editModelData)}>
-                    {!this.state.editModelData["Active"] ? "Approve" : "Approved"}
+                    {!this.state.editModelData["Active"] ? "Activate User?" : "Deactivate User?"}
                 </button>
             </Modal>
         </div>);

@@ -164,10 +164,19 @@ class UserDashboard extends Component {
                 return "";
             }
         };
-
+        let pages = [{
+            name: "Dashboard",
+            redirect: "/" + (utils.getRole() === utils.USER_ROLES.INSPECTOR ? "inspector" : "user") + "/dashboard"
+        }]
+        if (utils.getRole() === utils.USER_ROLES.INSPECTOR) {
+            pages.push({
+                name: "Services",
+                redirect: "/inspector/services"
+            })
+        }
         return (
             <div>
-                <NavBar/>
+                <NavBar pages={pages}/>
                 <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                     {modalWindowType()}
                 </Modal>

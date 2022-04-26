@@ -91,7 +91,7 @@ class InspecDashboard extends Component {
                     "Apartment Number": d["apt_no"],
                     "Email": d["email"],
                     "Proof": d["proof_url"],
-                    "Role": d["user_role"],
+                    "Role": utils.getUserRoleBasedOnCode(d["user_role"]),
                     "Active": d["is_active"] === '1'
                 }
             })
@@ -130,7 +130,7 @@ class InspecDashboard extends Component {
     };
 
     closeEditModal = () => {
-        if(this.state.bookingType === "discounts") {
+        if (this.state.bookingType === "discounts") {
             utils.reloadSection(this.discountAccordionBtn.current)
         }
         this.setState({showEditModal: false});
@@ -146,7 +146,13 @@ class InspecDashboard extends Component {
         };
         return (
             <div>
-                <NavBar/>
+                <NavBar pages={[{
+                    name: "Dashboard",
+                    redirect: "/" + (utils.getRole() === utils.USER_ROLES.ADMIN ? "admin" : "inspector") + "/dashboard"
+                }, {
+                    name: "Services",
+                    redirect: "/" + (utils.getRole() === utils.USER_ROLES.ADMIN ? "admin" : "inspector") + "/services"
+                }]}/>
                 <Modal show={this.state.showEditModal} handleClose={this.closeEditModal}>
                     {modalWindowType()}
                 </Modal>

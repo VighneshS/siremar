@@ -2,9 +2,8 @@ import React from 'react';
 import utils from '../utils/Utilities'
 import classes from './Table.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye} from "@fortawesome/free-solid-svg-icons";
 
-export default class Table extends React.Component {
+export default class TableComponent extends React.Component {
     constructor(props) {
         super(props);
         this.getHeader = this.getHeader.bind(this);
@@ -52,7 +51,7 @@ export default class Table extends React.Component {
 
     render() {
         return (<div>
-            <table>
+            <table className={classes.table}>
                 <thead>
                 {this.checkIfEmpty(this.props.data.data) ? (<tr>
                     <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack}

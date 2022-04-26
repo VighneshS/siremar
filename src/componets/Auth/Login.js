@@ -43,7 +43,6 @@ class Login extends Component {
             if (response.data.status === 200) {
                 localStorage.setItem('isLoggedin', true)
                 localStorage.setItem(utils.CURRENT_USER, response.data.id)
-                console.log(response.data);
                 localStorage.setItem(utils.CURRENT_USER_NAME, response.data.lname + " " + response.data.fname)
                 this.routeLogin()
             } else {

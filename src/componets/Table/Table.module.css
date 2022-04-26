@@ -116,3 +116,8 @@ button:active {
     float: left;
     padding: 0 10px;
 }
+
+.table {
+    margin: 0 auto;
+    overflow-x: auto;
+}

@@ -21,7 +21,7 @@ const utils = {
                     .concat(date.getMinutes().toString()
                         .concat(date.getSeconds().toString()))));
     },
-    getRole: function (path) {
+    getRole: function (path=window.location.pathname) {
         if (path.includes("user")) {
             return "U101";
         } else if (path.includes("admin")) {
@@ -54,7 +54,6 @@ const utils = {
     },
     validateForm(errors, data) {
         let valid = false;
-        console.log(data)
         let isNulls = Object.values(data).some((val) => {
             if (typeof val === "boolean" || val === 0)
                 return false;
