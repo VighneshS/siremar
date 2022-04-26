@@ -26,7 +26,7 @@ const utils = {
             return "U101";
         } else if (path.includes("admin")) {
             return "A101";
-        } else if (path.includes("inspector")){
+        } else if (path.includes("inspector")) {
             return "I101";
         } else {
             return "U101";
@@ -54,7 +54,10 @@ const utils = {
     },
     validateForm(errors, data) {
         let valid = false;
+        console.log(data)
         let isNulls = Object.values(data).some((val) => {
+            if (typeof val === "boolean" || val === 0)
+                return false;
             return !val;
         })
         let isEmpty = Object.values(data).some((val) => {
@@ -71,6 +74,13 @@ const utils = {
     },
     getCurrentUserName() {
         return localStorage.getItem(utils.CURRENT_USER_NAME)
+    },
+    reloadSection(button) {
+        button.click()
+        const timer = setTimeout(() => {
+            button.click()
+            clearTimeout(timer);
+        }, 300);
     }
 };
 

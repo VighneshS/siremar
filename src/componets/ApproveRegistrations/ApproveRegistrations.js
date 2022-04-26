@@ -5,6 +5,7 @@ import data from "../../data/users.json"
 import classes from "./ApproveRegistrations.module.css"
 import utils from "../utils/Utilities";
 import {approveUser} from "../utils/Services";
+import {faEye} from "@fortawesome/free-solid-svg-icons";
 
 export default class ApproveRegistrations extends Component {
 
@@ -26,7 +27,7 @@ export default class ApproveRegistrations extends Component {
             editModelData: {}
         };
         this.actions = [{
-            "action": "View", "callBack": this.handleEditCallBack
+            "action": "View", "icon": faEye, "callBack": this.handleEditCallBack
         }]
         this.openEditModal = this.openEditModal.bind(this);
         this.closeEditModal = this.closeEditModal.bind(this);

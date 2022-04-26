@@ -26,6 +26,7 @@ class InspecDashboard extends Component {
         bookingType: "",
         tableData: null,
     };
+    discountAccordionBtn = React.createRef();
 
     handleaccordion = (e) => {
         this.setState({tableData: null})
@@ -70,7 +71,7 @@ class InspecDashboard extends Component {
                     "Requested Date": d["created_on"],
                     "Reason": d["comments"],
                     "Role": utils.getUserRoleBasedOnCode(d["user_role"]),
-                    "Approved": (d["is_approved"]==='1' ? "Yes" : "No")
+                    "Approved": (d["is_approved"] === '1' ? "Yes" : "No")
                 }
             })
             this.setState({tableData: data})
@@ -116,6 +117,11 @@ class InspecDashboard extends Component {
         });
     }
 
+    reloadDiscountsAccordion() {
+        this.discountAccordionBtn.current.click();
+        this.discountAccordionBtn.current.click();
+    }
+
     openEditModal = (type) => {
         this.setState({
             bookingType: type,
@@ -124,6 +130,9 @@ class InspecDashboard extends Component {
     };
 
     closeEditModal = () => {
+        if(this.state.bookingType === "discounts") {
+            utils.reloadSection(this.discountAccordionBtn.current)
+        }
         this.setState({showEditModal: false});
     };
 
@@ -244,7 +253,7 @@ class InspecDashboard extends Component {
                             </button>
                         </div>
                         <div className={`${styles.col_5} ${styles.expandbttn}`}>
-                            <button id="fifth" onClick={this.handleaccordion}>
+                            <button id="fifth" onClick={this.handleaccordion} ref={this.discountAccordionBtn}>
                                 {this.state.active ? "-" : "+"}
                             </button>
                         </div>
@@ -256,7 +265,8 @@ class InspecDashboard extends Component {
                             }`}
                         >
                             {this.state.tableData ? (
-                                <Discounts data={this.state.tableData}/>) : utils.getProgressCircle()}
+                                <Discounts data={this.state.tableData}
+                                           callBack={this.discountAccordionBtn}/>) : utils.getProgressCircle()}
                         </div>
                     </div>
                 </div>

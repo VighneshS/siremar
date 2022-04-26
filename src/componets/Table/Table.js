@@ -1,6 +1,8 @@
 import React from 'react';
 import utils from '../utils/Utilities'
 import classes from './Table.module.css'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEye} from "@fortawesome/free-solid-svg-icons";
 
 export default class Table extends React.Component {
     constructor(props) {
@@ -54,10 +56,10 @@ export default class Table extends React.Component {
                 <thead>
                 {this.checkIfEmpty(this.props.data.data) ? (<tr>
                     <RenderCheckbox hasCheckbox={this.props.hasCheckbox} callBack={this.props.callBack}
-                    isSelectAll={false}/>
-                {this.getHeader()}
+                                    isSelectAll={false}/>
+                    {this.getHeader()}
                     <RenderActionHeader actions={this.props.actions}/>
-                    </tr>) : "No data"}
+                </tr>) : "No data"}
                 </thead>
                 <tbody>
                 {this.getRowsData()}
@@ -104,11 +106,12 @@ const RenderActionHeader = (props) => {
 
 const RenderActionButtons = (props) => {
     if (props.actions) {
-        return props.actions.map((key, index) => {
-            return <td key={utils.getRandomUniqueId()}>
-                <button onClick={(e) => key.callBack(e, props.data)}>{key.action}</button>
-            </td>
-        });
+        return (<td className={classes.action} key={utils.getRandomUniqueId()}>
+            {props.actions.map((key, index) => {
+                return (<div className={classes.actionIcon} onClick={(e) => key.callBack(e, props.data)}><FontAwesomeIcon icon={key.icon}/></div>)
+            })
+            }
+        </td>)
     }
     return null;
 }
