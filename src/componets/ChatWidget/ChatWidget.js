@@ -2,6 +2,8 @@ import React, {useRef, useState} from 'react';
 import classes from './ChatWidget.module.css'
 import utils from "../utils/Utilities";
 import Socket from "../Socket/Socket";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faLinkSlash} from "@fortawesome/free-solid-svg-icons";
 
 const ChatWidget = () => {
     const unknownUser = localStorage.getItem(utils.CURRENT_UNKNOWN_USER);
@@ -14,6 +16,7 @@ const ChatWidget = () => {
     const currentUserRole = utils.getRole(window.location.pathname);
     const chatLog = useRef();
     const [roomId, setRoomId] = useState(currentUserId);
+    const [chatUserName, setChatUserName] = useState("Inspector");
     const {
         messages,
         users,
@@ -56,6 +59,7 @@ const ChatWidget = () => {
         if (user) {
             setRoomId(user.roomId)
         }
+        setChatUserName(user.name)
         setMenu('C')
     }
 
@@ -86,22 +90,23 @@ const ChatWidget = () => {
         return <div className={classes.chatBorder}>
             <div className={classes.chatLog}>
                 {
-                    users.map((user, i) => {
-                        return (
-                            <div className={classes.chatLog}>
-                                <ul>
+                    (<div className={classes.chatLog}>
+                        <ul>
+                            {users.map((user, i) => {
+                                return (
                                     <li key={utils.getRandomUniqueId()}>
                                         {
                                             user.roomId !== roomId &&
-                                            <button onClick={(e) => loadChat(e, user)}>
+                                            <button key={utils.getRandomUniqueId()} onClick={(e) => loadChat(e, user)}>
                                                 <strong>{user.name}</strong>
                                             </button>
                                         }
                                     </li>
-                                </ul>
-                            </div>
-                        )
-                    })
+                                )
+                            })}
+                            {users.length <= 0 && <h2><FontAwesomeIcon icon={faLinkSlash}/> No Users Online</h2>}
+                        </ul>
+                    </div>)
                 }
             </div>
         </div>;
@@ -109,7 +114,8 @@ const ChatWidget = () => {
 
     return (
         <div className={classes.chatContainer}>
-            <h2>Chat with Inspector</h2>
+            {(menu === 'U' && <h2>Select a User</h2>)}
+            {(menu === 'C' && <h2>Chat with {chatUserName}</h2>)}
             {(menu === 'C' && <RenderChatLog/>) || (menu === 'U' && <RenderUserList/>)}
         </div>
     );
