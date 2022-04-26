@@ -38,19 +38,24 @@ export const endPoints = {
     blog: `https://siremar.blog.vxs8596.uta.cloud/`
 }
 
-export const WS_HOST = "ws://localhost:9000"
+// export const WS_HOST = "ws://localhost:9000"
+export const WS_HOST = process.env.REACT_APP_SIREMAR_WEB_SOCKET
 export const NEW_CHAT_MESSAGE_EVENT = "chat message"
 export const TYPING_CHAT_MESSAGE_EVENT = "typing"
 export const USERS_EVENT = "users"
 
 export const api = axios.create({
-    baseURL: `http://localhost/`
+    // baseURL: `http://localhost/`
     // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
+    baseURL: process.env.REACT_APP_SIREMAR_API_PHP
 })
+console.log(process.env.REACT_APP_SIREMAR_API_LARAVEL);
 
 export const apiLaravel = axios.create({
-    baseURL: `http://localhost:8000/api/`
+    // baseURL: `http://3.145.17.236/api/`
+    // baseURL: `http://localhost:8000/api/`
     // baseURL: `https://siremar.api.vxs8596.uta.cloud/`
+    baseURL: process.env.REACT_APP_SIREMAR_API_LARAVEL
 })
 
 function App() {
